@@ -5,7 +5,9 @@ import { Check, Copy, Mail } from "lucide-react";
 import { useState } from "react";
 import type { ReactNode } from "react";
 
-const EMAIL = "hello@example.com";
+import { portfolioContent } from "@/lib/portfolio-content";
+
+const EMAIL = portfolioContent.contact.email;
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function ContactButton(): ReactNode {
@@ -47,7 +49,7 @@ export function ContactButton(): ReactNode {
       }
       transition={{ layout: { duration: 0.55, ease: EASE } }}
       style={{ borderRadius: 12 }}
-      className="focus-ring relative inline-flex h-11 cursor-pointer items-center justify-center bg-foreground px-5 text-sm font-medium text-background"
+      className="focus-ring bg-foreground text-background relative inline-flex h-11 cursor-pointer items-center justify-center px-5 text-sm font-medium"
     >
       <motion.span
         layout="position"

@@ -1,25 +1,34 @@
 import type { Metadata } from "next";
+import { portfolioContent } from "@/lib/portfolio-content";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const toAbsoluteUrl = (path: string): string =>
+  new URL(path, siteUrl).toString();
 
 export const siteConfig = {
-  name: "Portfolio",
+  name: "Tidjan Tokpa",
   description:
-    "A modern, accessible portfolio template built with Next.js, Tailwind CSS, and TypeScript.",
-  url: "https://example.com",
-  ogImage: "/og-image.png",
-  creator: "@yourhandle",
+    "Portfolio de Tidjan Tokpa, developpeur web fullstack en alternance, oriente SaaS, IA, marketplaces et automatisation.",
+  url: siteUrl,
+  ogImage: "/icon.svg",
+  creator: portfolioContent.profile.name,
   authors: [
     {
-      name: "Your Name",
-      url: "https://example.com",
+      name: portfolioContent.profile.name,
+      url: portfolioContent.links.github,
     },
   ],
   keywords: [
-    "portfolio",
-    "personal site",
+    "Tidjan Tokpa",
+    "developpeur fullstack",
+    "alternance developpeur web",
+    "portfolio developpeur",
+    "SaaS",
+    "IA",
+    "marketplace",
     "Next.js",
-    "React",
-    "Tailwind CSS",
-    "TypeScript",
+    "Vue.js",
+    "NestJS",
   ],
 } as const;
 
@@ -50,7 +59,7 @@ export const baseMetadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "fr_FR",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -58,8 +67,8 @@ export const baseMetadata: Metadata = {
     images: [
       {
         url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
+        width: 512,
+        height: 512,
         alt: siteConfig.name,
       },
     ],
@@ -69,7 +78,6 @@ export const baseMetadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: siteConfig.creator,
   },
   icons: {
     icon: "/favicon.ico",
@@ -92,7 +100,7 @@ export function createMetadata({
   image?: string;
   noIndex?: boolean;
 }): Metadata {
-  const url = `${siteConfig.url}${path}`;
+  const url = toAbsoluteUrl(path);
   const ogImage = image ?? siteConfig.ogImage;
 
   return {
@@ -108,8 +116,8 @@ export function createMetadata({
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 630,
+          width: 512,
+          height: 512,
           alt: title ?? siteConfig.name,
         },
       ],

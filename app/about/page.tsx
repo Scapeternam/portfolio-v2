@@ -1,43 +1,84 @@
 import { Education } from "@/components/about/education";
 import { Experience } from "@/components/about/experience";
-import { PolaroidStrip } from "@/components/about/polaroid-strip";
 import { Skills } from "@/components/about/skills";
 import { Stack } from "@/components/about/stack";
 import { ContactCard } from "@/components/contact/contact-card";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import { createMetadata } from "@/lib/metadata";
+import { portfolioContent } from "@/lib/portfolio-content";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
-  title: "About",
-  description: "About me, background, and how to get in touch.",
+  title: "A propos",
+  description:
+    "Parcours, formation, projets et contact de Tidjan Tokpa, developpeur web fullstack en alternance.",
   path: "/about",
 });
 
 export default function AboutPage(): ReactNode {
+  const { agency, profile, proofPoints } = portfolioContent;
+
   return (
     <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-312 pt-40 sm:pt-56">
-        <PolaroidStrip />
-      </section>
-
-      <section className="mx-auto w-full max-w-160 px-6 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24">
+      <section className="mx-auto w-full max-w-160 px-6 pt-44 pb-16 sm:px-10 sm:pt-56 sm:pb-24">
         <FadeIn delay={0.5}>
-          <div className="rounded-4xl border border-foreground/5 bg-foreground/1.5 p-8 sm:p-12 dark:bg-foreground/3">
-            <h1 className="font-serif text-[1.75rem] font-medium tracking-tight text-foreground sm:text-[2rem]">
-              Hello! I&rsquo;m <span className="border-b border-foreground/30 pb-0.5">Josh Mercer</span>.
+          <div className="border-foreground/5 bg-foreground/1.5 dark:bg-foreground/3 rounded-4xl border p-8 sm:p-12">
+            <h1 className="text-foreground font-serif text-[1.75rem] font-medium tracking-tight sm:text-[2rem]">
+              Je suis{" "}
+              <span className="border-foreground/30 border-b pb-0.5">
+                {profile.name}
+              </span>
+              .
             </h1>
-            <div className="mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight text-foreground/75 sm:text-[18px]">
+            <div className="text-foreground/75 mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight sm:text-[18px]">
+              <p>{profile.summary}</p>
               <p>
-                A <strong className="font-semibold text-foreground">product designer and frontend engineer</strong> passionate about building intuitive, human-centered digital experiences. With a background in <strong className="font-semibold text-foreground">visual craft</strong> and <strong className="font-semibold text-foreground">interaction design</strong>, I bring a unique blend of design thinking and technical execution to every project.
+                Mon parcours part du terrain: management, rythme operationnel,
+                flux de caisse, priorites mouvantes et responsabilite
+                d&apos;equipe. Je m&apos;en sers aujourd&apos;hui pour
+                construire des produits qui restent utiles hors demo.
               </p>
               <p>
-                My journey into design began when I realized how often good user experience was missing from powerful tools. That led me to embrace <strong className="font-semibold text-foreground">user-centered design</strong> as both a mindset and a craft, one that balances clarity, creativity, and functionality.
+                {agency.body} Cette logique relie mes projets SaaS,
+                marketplaces, IA et operations terrain autour d&apos;un meme
+                objectif: apprendre vite en livrant du concret.
               </p>
-              <p>
-                Currently leading design at small product teams shipping software for <strong className="font-semibold text-foreground">creative professionals</strong>, I&rsquo;m always looking for opportunities to <strong className="font-semibold text-foreground">shape thoughtful interfaces and build scalable design systems</strong>.
-              </p>
+            </div>
+
+            <div className="border-foreground/8 mt-8 grid gap-6 border-t pt-8 md:grid-cols-2">
+              <div>
+                <h2 className="text-foreground text-[15px] font-semibold tracking-tight">
+                  Preuves
+                </h2>
+                <ul className="text-foreground/65 mt-4 flex flex-col gap-2 text-[14px] leading-normal tracking-tight">
+                  {proofPoints.map((point) => (
+                    <li key={point} className="flex gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="bg-foreground/35 mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h2 className="text-foreground text-[15px] font-semibold tracking-tight">
+                  Teach Agency / Octopus
+                </h2>
+                <ul className="text-foreground/65 mt-4 flex flex-col gap-2 text-[14px] leading-normal tracking-tight">
+                  {agency.details.map((detail) => (
+                    <li key={detail} className="flex gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="bg-foreground/35 mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                      />
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </FadeIn>

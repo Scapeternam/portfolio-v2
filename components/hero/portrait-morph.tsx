@@ -1,8 +1,14 @@
 "use client";
 
+import NextImage from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { Renderer, Program, Mesh, Triangle, Transform, Texture } from "ogl";
+
+import {
+  createSupportedWebGLCanvas,
+  releaseWebGLContext,
+} from "@/lib/webgl-support";
 
 export type PortraitMorphProps = {
   srcA: string;
@@ -121,35 +127,94 @@ export function PortraitMorph({
   className,
 }: PortraitMorphProps): ReactNode {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [ready, setReady] = useState(false);
+  const [readyKey, setReadyKey] = useState<string | null>(null);
+  const imageKey = `${srcA}\n${srcB}`;
+  const ready = readyKey === imageKey;
   const hoverRef = useRef(false);
   const progressRef = useRef(0);
   const originRef = useRef<[number, number]>([0.5, 0.5]);
   const directionRef = useRef<[number, number]>([1, 0]);
-  const lastPointerRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  const lastPointerRef = useRef<{ x: number; y: number; t: number } | null>(
+    null
+  );
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({
+    const rendererOptions = {
       alpha: true,
       premultipliedAlpha: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
-    });
-    const gl = renderer.gl;
-    const canvas = gl.canvas as HTMLCanvasElement;
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.style.display = "block";
-    container.appendChild(canvas);
+    };
+    const canvas = createSupportedWebGLCanvas(rendererOptions);
+    if (!canvas) return;
 
-    const scene = new Transform();
-
-    const texA = new Texture(gl, { generateMipmaps: false });
-    const texB = new Texture(gl, { generateMipmaps: false });
+    let renderer: Renderer | null = null;
+    let gl: Renderer["gl"] | null = null;
+    let scene: Transform | null = null;
+    let texA: Texture | null = null;
+    let texB: Texture | null = null;
+    let program: Program | null = null;
 
     const imageSize: [number, number] = [1, 1];
+
+    try {
+      renderer = new Renderer({
+        canvas,
+        dpr: Math.min(window.devicePixelRatio || 1, 2),
+        ...rendererOptions,
+      });
+      gl = renderer.gl;
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.display = "block";
+      container.appendChild(canvas);
+
+      scene = new Transform();
+
+      texA = new Texture(gl, { generateMipmaps: false });
+      texB = new Texture(gl, { generateMipmaps: false });
+
+      const geometry = new Triangle(gl);
+      program = new Program(gl, {
+        vertex: VERTEX_SHADER,
+        fragment: FRAGMENT_SHADER,
+        uniforms: {
+          uTexA: { value: texA },
+          uTexB: { value: texB },
+          uProgress: { value: 0 },
+          uTime: { value: 0 },
+          uResolution: { value: [1, 1] as [number, number] },
+          uImageSize: { value: imageSize },
+          uOrigin: { value: [0.5, 0.5] as [number, number] },
+          uDirection: { value: [1, 0] as [number, number] },
+        },
+        transparent: true,
+      });
+      const mesh = new Mesh(gl, { geometry, program });
+      mesh.setParent(scene);
+    } catch {
+      releaseWebGLContext(gl);
+      if (canvas.parentNode === container) container.removeChild(canvas);
+      return;
+    }
+
+    const activeRenderer = renderer;
+    const activeGl = gl;
+    const activeScene = scene;
+    const activeTexA = texA;
+    const activeTexB = texB;
+    const activeProgram = program;
+    if (
+      !activeRenderer ||
+      !activeGl ||
+      !activeScene ||
+      !activeTexA ||
+      !activeTexB ||
+      !activeProgram
+    ) {
+      return;
+    }
 
     const loadImage = (src: string, target: Texture): Promise<void> =>
       new Promise((resolve, reject) => {
@@ -165,34 +230,15 @@ export function PortraitMorph({
         img.src = src;
       });
 
-    const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex: VERTEX_SHADER,
-      fragment: FRAGMENT_SHADER,
-      uniforms: {
-        uTexA: { value: texA },
-        uTexB: { value: texB },
-        uProgress: { value: 0 },
-        uTime: { value: 0 },
-        uResolution: { value: [1, 1] as [number, number] },
-        uImageSize: { value: imageSize },
-        uOrigin: { value: [0.5, 0.5] as [number, number] },
-        uDirection: { value: [1, 0] as [number, number] },
-      },
-      transparent: true,
-    });
-    const mesh = new Mesh(gl, { geometry, program });
-    mesh.setParent(scene);
-
     const resize = () => {
       const w = container.clientWidth;
       const h = container.clientHeight;
-      renderer.setSize(w, h);
+      activeRenderer.setSize(w, h);
       canvas.style.width = "100%";
       canvas.style.height = "100%";
-      program.uniforms.uResolution.value = [
-        w * renderer.dpr,
-        h * renderer.dpr,
+      activeProgram.uniforms.uResolution.value = [
+        w * activeRenderer.dpr,
+        h * activeRenderer.dpr,
       ];
     };
     const ro = new ResizeObserver(resize);
@@ -216,24 +262,24 @@ export function PortraitMorph({
       const k = 1 - Math.exp(-stiffness * dt);
       progressRef.current += (target - progressRef.current) * k;
 
-      program.uniforms.uTime.value = time;
-      program.uniforms.uProgress.value = progressRef.current;
-      program.uniforms.uOrigin.value = originRef.current;
-      program.uniforms.uDirection.value = directionRef.current;
-      program.uniforms.uImageSize.value = imageSize;
+      activeProgram.uniforms.uTime.value = time;
+      activeProgram.uniforms.uProgress.value = progressRef.current;
+      activeProgram.uniforms.uOrigin.value = originRef.current;
+      activeProgram.uniforms.uDirection.value = directionRef.current;
+      activeProgram.uniforms.uImageSize.value = imageSize;
 
-      renderer.render({ scene });
+      activeRenderer.render({ scene: activeScene });
       raf = requestAnimationFrame(tick);
     };
 
-    Promise.all([loadImage(srcA, texA), loadImage(srcB, texB)])
+    Promise.all([loadImage(srcA, activeTexA), loadImage(srcB, activeTexB)])
       .then(() => {
-        setReady(true);
+        setReadyKey(imageKey);
         last = performance.now();
         tick();
       })
       .catch(() => {
-        setReady(false);
+        setReadyKey(null);
       });
 
     const computeEdgeDirection = (x: number, y: number): [number, number] => {
@@ -273,7 +319,11 @@ export function PortraitMorph({
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1 - (e.clientY - rect.top) / rect.height;
       const last = lastPointerRef.current;
-      if (last && performance.now() - last.t < 80 && progressRef.current < 0.15) {
+      if (
+        last &&
+        performance.now() - last.t < 80 &&
+        progressRef.current < 0.15
+      ) {
         const vx = x - last.x;
         const vy = y - last.y;
         const mag = Math.hypot(vx, vy);
@@ -295,11 +345,10 @@ export function PortraitMorph({
       container.removeEventListener("pointerenter", onPointerEnter);
       container.removeEventListener("pointerleave", onPointerLeave);
       container.removeEventListener("pointermove", onPointerMove);
-      const ext = gl.getExtension("WEBGL_lose_context");
-      if (ext) ext.loseContext();
+      releaseWebGLContext(activeGl);
       if (canvas.parentNode === container) container.removeChild(canvas);
     };
-  }, [srcA, srcB]);
+  }, [imageKey, srcA, srcB]);
 
   return (
     <div
@@ -307,14 +356,21 @@ export function PortraitMorph({
       role="img"
       aria-label={alt}
       className={className}
-      style={{ position: "relative", width: "100%", height: "100%", filter: "grayscale(100%)" }}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        filter: "grayscale(100%)",
+      }}
     >
       {!ready ? (
-        <img
+        <NextImage
           src={srcA}
           alt={alt}
+          fill
+          sizes="(min-width: 768px) 420px, 100vw"
           draggable={false}
-          className="absolute inset-0 h-full w-full select-none object-cover"
+          className="absolute inset-0 h-full w-full object-cover select-none"
         />
       ) : null}
     </div>

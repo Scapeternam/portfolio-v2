@@ -1,0 +1,235 @@
+name: CI/CD - BMAD + RGPD + Sécurité
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+jobs:
+  # ============================================================
+  # GATE 0 : VALIDATION BMAD
+  # ============================================================
+  bmad-validation:
+    runs-on: ubuntu-latest
+    outputs:
+      bmad_status: ${{ steps.bmad-check.outputs.status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Vérifier artefacts BMAD
+        id: bmad-check
+        run: |
+          REQUIRED_FILES=("docs/brief.md" "docs/prd.md" "docs/architecture.md")
+          MISSING_FILES=()
+
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              MISSING_FILES+=("$file")
+            else
+              WORD_COUNT=$(wc -w < "$file" 2>/dev/null)
+              if [ "$WORD_COUNT" -lt 50 ]; then
+                MISSING_FILES+=("$file (trop court : $WORD_COUNT mots)")
+              fi
+            fi
+          done
+
+          if [ -d "docs/stories" ]; then
+            STORIES_COUNT=$(ls docs/stories/*.md 2>/dev/null | wc -l)
+            if [ "$STORIES_COUNT" -eq 0 ]; then
+              MISSING_FILES+=("docs/stories/ (aucune story)")
+            fi
+          fi
+
+          if [ ${#MISSING_FILES[@]} -gt 0 ]; then
+            echo "::error::Artefacts BMAD manquants ou invalides : ${MISSING_FILES[*]}"
+            echo "status=FAILED" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "status=PASSED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notification Discord (Gate 0)
+        if: steps.bmad-check.outputs.status == 'FAILED'
+        uses: Ilshidur/action-discord@0.6.5
+        with:
+          args: "❌ **portfolio-v2** — Gate 0 (BMAD) échouée : artefacts manquants. Commit : ${{ github.sha }}"
+
+  # ============================================================
+  # GATE 1 : VALIDATION RGPD
+  # ============================================================
+  rgpd-validation:
+    needs: bmad-validation
+    runs-on: ubuntu-latest
+    outputs:
+      rgpd_status: ${{ steps.rgpd-check.outputs.status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Vérifier placeholders légaux
+        id: rgpd-check
+        run: |
+          PLACEHOLDERS=("{{PRIVACY_POLICY_URL}}" "{{TERMS_URL}}" "{{COMPANY_NAME}}" "{{COMPANY_ADDRESS}}" "{{CONTACT_EMAIL}}")
+          FOUND_PLACEHOLDERS=()
+
+          for placeholder in "${PLACEHOLDERS[@]}"; do
+            if grep -rq "$placeholder" . --include="*.md" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" 2>/dev/null; then
+              FOUND_PLACEHOLDERS+=("$placeholder")
+            fi
+          done
+
+          if [ ${#FOUND_PLACEHOLDERS[@]} -gt 0 ]; then
+            echo "::error::Placeholders RGPD non remplacés : ${FOUND_PLACEHOLDERS[*]}"
+            echo "status=FAILED" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          # Vérifier pages légales
+          LEGAL_PAGES=("legal/confidentialite.md" "legal/conditions.md" "legal/mentions-legales.md")
+          MISSING_PAGES=()
+          for page in "${LEGAL_PAGES[@]}"; do
+            if [ ! -f "$page" ]; then
+              MISSING_PAGES+=("$page")
+            fi
+          done
+
+          if [ ${#MISSING_PAGES[@]} -gt 0 ]; then
+            echo "::error::Pages légales manquantes : ${MISSING_PAGES[*]}"
+            echo "status=FAILED" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          echo "status=PASSED" >> $GITHUB_OUTPUT
+
+      - name: Notification Discord (Gate 1)
+        if: steps.rgpd-check.outputs.status == 'FAILED'
+        uses: Ilshidur/action-discord@0.6.5
+        with:
+          args: "❌ **portfolio-v2** — Gate 1 (RGPD) échouée. Commit : ${{ github.sha }}"
+
+  # ============================================================
+  # GATE 2 : SÉCURITÉ
+  # ============================================================
+  security-validation:
+    needs: rgpd-validation
+    runs-on: ubuntu-latest
+    outputs:
+      security_status: ${{ steps.security-check.outputs.status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit des dépendances
+        id: security-check
+        run: |
+          npm audit --audit-level=critical --json > audit-results.json
+          if [ $? -ne 0 ]; then
+            echo "::error::Vulnérabilités critiques détectées"
+            cat audit-results.json
+            echo "status=FAILED" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "status=PASSED" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Scan des secrets (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          fail-on-error: true
+
+      - name: Vérifier middleware CSP
+        run: |
+          if grep -rq "Content-Security-Policy" src/ app/ next.config.* 2>/dev/null; then
+            echo "CSP middleware trouvé"
+          else
+            echo "::error::Middleware CSP manquant"
+            exit 1
+          fi
+
+      - name: Vérifier rate limiting
+        run: |
+          if grep -rqi "ratelimit\|rate-limit\|rate_limit" src/ app/ 2>/dev/null; then
+            echo "Rate limiting trouvé"
+          else
+            echo "::warning::Middleware de rate limiting non détecté"
+          fi
+
+      - name: Notification Discord (Gate 2)
+        if: steps.security-check.outputs.status == 'FAILED'
+        uses: Ilshidur/action-discord@0.6.5
+        with:
+          args: "❌ **portfolio-v2** — Gate 2 (Sécurité) échouée. Commit : ${{ github.sha }}"
+
+  # ============================================================
+  # GATE 3 : QUALITÉ
+  # ============================================================
+  quality-validation:
+    needs: security-validation
+    runs-on: ubuntu-latest
+    outputs:
+      quality_status: ${{ steps.quality-check.outputs.status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint (ESLint)
+        id: quality-check
+        run: |
+          npx eslint . --ext .ts,.tsx,.js,.jsx,.mjs
+          if [ $? -ne 0 ]; then
+            echo "status=FAILED" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: TypeCheck (TypeScript)
+        run: npx tsc --noEmit
+
+      - name: Tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Set success status
+        if: success()
+        run: echo "status=PASSED" >> $GITHUB_OUTPUT
+
+      - name: Notification Discord (Gate 3)
+        if: failure()
+        uses: Ilshidur/action-discord@0.6.5
+        with:
+          args: "❌ **portfolio-v2** — Gate 3 (Qualité) échouée. Commit : ${{ github.sha }}"
+
+  # ============================================================
+  # SUCCES
+  # ============================================================
+  notify-success:
+    needs: quality-validation
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notification Discord (Succès)
+        uses: Ilshidur/action-discord@0.6.5
+        with:
+          args: "✅ **portfolio-v2** — Pipeline CI/CD réussi ! Commit : ${{ github.sha }}. Déployé sur Vercel."

@@ -19,7 +19,7 @@ export default function ProjectsPage(): ReactNode {
       <section className="mx-auto w-full max-w-275 px-6 pt-44 pb-16 sm:px-10 sm:pt-100 sm:pb-20">
         <FadeIn className="flex flex-col items-center gap-5 text-center">
           <h1 className="text-foreground font-serif text-[2.75rem] leading-[1.05] font-medium tracking-tight md:text-[3.25rem] lg:text-[3.75rem]">
-            Projets reels, produits en cours et preuves terrain.
+            Projets réels, produits en cours et preuves terrain.
           </h1>
           <p className="text-foreground/65 max-w-[33ch] text-[20px] leading-[1.4] tracking-tight sm:text-[22px]">
             {portfolioContent.profile.summary}

@@ -77,7 +77,7 @@ export default function CvPage(): ReactNode {
           <aside className="flex flex-col gap-3.5 print:gap-3">
             <div>
               <h2 className="text-foreground/80 text-[12px] font-semibold uppercase tracking-widest print:text-[9pt] print:tracking-[0.15em]">
-                Competences
+                Compétences
               </h2>
               <div className="mt-1.5 flex flex-col gap-2.5 print:gap-2 print:mt-1">
                 {skillGroups.map((group) => (
@@ -129,13 +129,13 @@ export default function CvPage(): ReactNode {
                 Langues
               </h2>
               <p className="text-foreground/60 mt-1 text-[11px] tracking-tight print:text-[8pt] print:mt-0.5">
-                Francais (natif) · Anglais technique
+                Français (natif) · Anglais technique
               </p>
             </div>
 
             <div>
               <h2 className="text-foreground/80 text-[12px] font-semibold uppercase tracking-widest print:text-[9pt] print:tracking-[0.15em]">
-                Interets
+                Intérêts
               </h2>
               <p className="text-foreground/55 mt-1 text-[11px] leading-relaxed tracking-tight print:text-[8pt] print:mt-0.5">
                 Web3 / Solana · Infrastructure self-hosted · Automatisation n8n · IA locale · SaaS et marketplaces
@@ -146,7 +146,7 @@ export default function CvPage(): ReactNode {
           <div className="flex flex-col gap-3.5 print:gap-3">
             <div>
               <h2 className="text-foreground/80 text-[12px] font-semibold uppercase tracking-widest print:text-[9pt] print:tracking-[0.15em]">
-                Experience
+                Expérience
               </h2>
               <div className="mt-1.5 flex flex-col gap-2 print:gap-1.5 print:mt-1">
                 {experience.map((exp) => (
@@ -163,7 +163,7 @@ export default function CvPage(): ReactNode {
 
             <div>
               <h2 className="text-foreground/80 text-[12px] font-semibold uppercase tracking-widest print:text-[9pt] print:tracking-[0.15em]">
-                Projets selectionnes
+                Projets sélectionnés
               </h2>
               <div className="mt-1.5 flex flex-col gap-2 print:gap-1.5 print:mt-1">
                 {featuredProjects.map((p) => (

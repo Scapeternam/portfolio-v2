@@ -8,7 +8,7 @@ export function Skills(): ReactNode {
   return (
     <div className="flex flex-col gap-3">
       <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-        Competences
+        Compétences
       </h3>
       <div className="border-foreground/5 bg-foreground/2 dark:bg-foreground/5 rounded-4xl border p-4 sm:p-5">
         <div className="grid gap-5">

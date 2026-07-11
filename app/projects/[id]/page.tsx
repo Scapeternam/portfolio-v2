@@ -78,7 +78,7 @@ export default async function ProjectDetailPage({ params }: Props): Promise<Reac
 
               <div>
                 <h2 className="text-foreground text-[15px] font-semibold tracking-tight">
-                  Points cles
+                  Points clés
                 </h2>
                 <ul className="text-foreground/70 mt-2 flex flex-col gap-2 text-[15px] leading-normal tracking-tight sm:text-[16px]">
                   {project.highlights.map((h) => (

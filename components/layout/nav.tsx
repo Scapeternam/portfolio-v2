@@ -86,9 +86,9 @@ function NavThemeToggle(): ReactNode {
       aria-label={
         mounted
           ? isDark
-            ? "Passer au theme clair"
-            : "Passer au theme sombre"
-          : "Changer de theme"
+            ? "Passer au thème clair"
+            : "Passer au thème sombre"
+          : "Changer de thème"
       }
       aria-pressed={mounted ? isDark : undefined}
       className="focus-ring bg-background ring-foreground/8 relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full ring-1 transition-colors"

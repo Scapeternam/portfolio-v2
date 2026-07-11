@@ -93,7 +93,7 @@ export default function AdminPage(): ReactNode {
             Admin — Portfolio
           </h1>
           <p className="text-foreground/55 mt-2 text-[14px] tracking-tight">
-            Acces reserve au proprietaire du portfolio.
+            Accès réservé au propriétaire du portfolio.
           </p>
           <label className="mt-6 flex flex-col gap-2">
             <span className="text-foreground/70 text-[13px] font-medium tracking-tight">
@@ -139,13 +139,13 @@ export default function AdminPage(): ReactNode {
             Configuration CV
           </h2>
           <p className="text-foreground/55 mt-1 text-[13px] tracking-tight">
-            Selectionne les projets a afficher sur le CV et personnalise le rendu.
+            Sélectionne les projets à afficher sur le CV et personnalise le rendu.
           </p>
 
           <div className="mt-5 flex flex-col gap-5">
             <div>
               <p className="text-foreground/70 text-[13px] font-medium tracking-tight mb-2.5">
-                Projets affiches sur le CV
+                Projets affichés sur le CV
               </p>
               <div className="flex flex-wrap gap-2">
                 {allProjectIds.map((id) => {
@@ -176,7 +176,7 @@ export default function AdminPage(): ReactNode {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <label className="flex flex-col gap-1.5">
                 <span className="text-foreground/55 text-[12px] font-medium tracking-tight">
-                  Style des competences
+                  Style des compétences
                 </span>
                 <select
                   value={cvSettings.pillStyle}
@@ -210,7 +210,7 @@ export default function AdminPage(): ReactNode {
 
               <label className="flex flex-col gap-1.5">
                 <span className="text-foreground/55 text-[12px] font-medium tracking-tight">
-                  Densite des cartes projet
+                  Densité des cartes projet
                 </span>
                 <select
                   value={cvSettings.cardDensity}
@@ -269,7 +269,7 @@ export default function AdminPage(): ReactNode {
 
         {saved ? (
           <p className="text-[13px] tracking-tight text-green-500">
-            Sauvegarde reussie. Le CV reflete maintenant ces parametres.
+            Sauvegarde réussie. Le CV reflète maintenant ces paramètres.
           </p>
         ) : null}
 

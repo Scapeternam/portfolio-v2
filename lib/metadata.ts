@@ -8,7 +8,7 @@ const toAbsoluteUrl = (path: string): string =>
 export const siteConfig = {
   name: "Tidjan Tokpa",
   description:
-    "Portfolio de Tidjan Tokpa, developpeur web fullstack en alternance, oriente SaaS, IA, marketplaces et automatisation.",
+    "Portfolio de Tidjan Tokpa, développeur web fullstack en alternance, orienté SaaS, IA, marketplaces et automatisation.",
   url: siteUrl,
   ogImage: "/icon.svg",
   creator: portfolioContent.profile.name,
@@ -21,7 +21,7 @@ export const siteConfig = {
   keywords: [
     "Tidjan Tokpa",
     "developpeur fullstack",
-    "alternance developpeur web",
+    "alternance développeur web",
     "portfolio developpeur",
     "SaaS",
     "IA",

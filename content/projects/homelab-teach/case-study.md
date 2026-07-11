@@ -1,10 +1,10 @@
 # Homelab Teach — Case Study
 
-## Probleme resolu
-Dependance aux SaaS tiers pour l'automatisation, l'IA et le stockage. Besoin d'une infrastructure souveraine, economique et evolutive.
+## Problème résolu
+Dépendance aux SaaS tiers pour l'automatisation, l'IA et le stockage. Besoin d'une infrastructure souveraine, économique et évolutive.
 
 ## Solution
-Serveur personnel 24/7 (Acer Aspire A515-55) transforme en plateforme d'automatisation, IA et base de connaissance.
+Serveur personnel 24/7 (Acer Aspire A515-55) transformé en plateforme d'automatisation, IA et base de connaissance.
 
 ## Architecture
 - **OS**: Ubuntu Server 24.04 LTS
@@ -12,17 +12,17 @@ Serveur personnel 24/7 (Acer Aspire A515-55) transforme en plateforme d'automati
 - **Automatisation**: n8n (workflows, webhooks, scraping)
 - **IA locale**: Ollama avec Gemma 4 E2B
 - **Vector DB**: Qdrant pour le RAG sur le vault Obsidian
-- **Base de donnees**: PostgreSQL 16
-- **Acces distant**: Cloudflare Tunnel + Access
+- **Base de données**: PostgreSQL 16
+- **Accès distant**: Cloudflare Tunnel + Access
 
-## Decisions techniques
-- 100% self-hosted pour la souverainete des donnees
-- Ollama > APIs cloud pour le cout zero et la confidentialite
-- Qdrant pour indexer le vault Obsidian et repondre en contexte
-- Cloudflare Tunnel plutot que port forwarding pour la securite
+## Décisions techniques
+- 100% self-hosted pour la souveraineté des données
+- Ollama > APIs cloud pour le coût zéro et la confidentialité
+- Qdrant pour indexer le vault Obsidian et répondre en contexte
+- Cloudflare Tunnel plutôt que port forwarding pour la sécurité
 
-## Resultats
-- Infrastructure 24/7 operationnelle
+## Résultats
+- Infrastructure 24/7 opérationnelle
 - RAG fonctionnel sur le vault
 - Pipeline Jarvis : automatisation candidatures, scraping prospects, scoring
-- Cout mensuel : 0 EUR (hors electricite)
+- Coût mensuel : 0 EUR (hors électricité)

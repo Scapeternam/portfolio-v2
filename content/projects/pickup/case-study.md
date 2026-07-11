@@ -1,10 +1,10 @@
 # PickUp — Case Study
 
-## Probleme resolu
-Les services urbains a la demande (livraison, conciergerie, missions terrain) manquent d'une plateforme unifiee pour connecter clients et prestataires.
+## Problème résolu
+Les services urbains à la demande (livraison, conciergerie, missions terrain) manquent d'une plateforme unifiée pour connecter clients et prestataires.
 
 ## Solution
-Marketplace P2P avec parcours multi-pages : recherche, reservation, paiement, suivi et evaluation.
+Marketplace P2P avec parcours multi-pages : recherche, réservation, paiement, suivi et évaluation.
 
 ## Architecture
 - **Frontend**: React 18 avec Vite et TypeScript strict
@@ -12,12 +12,12 @@ Marketplace P2P avec parcours multi-pages : recherche, reservation, paiement, su
 - **Paiement**: Stripe Connect pour les paiements entre particuliers
 - **Notifications**: Twilio SMS
 
-## Decisions techniques
-- React pour rester dans l'ecosysteme JavaScript avec Supabase
-- Stripe Connect des le depart (pas de migration depuis Stripe Checkout)
-- Composants atomiques reutilisables (design system maison)
+## Décisions techniques
+- React pour rester dans l'écosystème JavaScript avec Supabase
+- Stripe Connect dès le départ (pas de migration depuis Stripe Checkout)
+- Composants atomiques réutilisables (design system maison)
 
-## Resultats
-- 19 pages React codees avec etat fonctionnel
-- Flux complet : inscription, creation d'annonce, reservation, paiement
-- Jamais lance en production (projet en reserve)
+## Résultats
+- 19 pages React codées avec état fonctionnel
+- Flux complet : inscription, création d'annonce, réservation, paiement
+- Jamais lancé en production (projet en réserve)

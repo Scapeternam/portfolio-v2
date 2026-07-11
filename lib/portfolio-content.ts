@@ -51,11 +51,11 @@ export type BootcampEntry = {
 export const portfolioContent = {
   profile: {
     name: "Tidjan Tokpa",
-    role: "Developpeur fullstack — Epitech WAC Promo 2027",
+    role: "Développeur fullstack — Epitech WAC Promo 2027",
     headline:
       "Je construis des SaaS, marketplaces et outils d'automatisation. Backend rigoureux, interfaces modernes, culture produit et infrastructure.",
     summary:
-      "Etudiant a la Web@cademie by Epitech, je combine des projets SaaS, Web3 et marketplaces avec une agence IT de 8 collaborateurs. Mon objectif : transformer chaque ligne de code en competence fullstack solide et livrer des applications utiles, du build a la production.",
+      "Étudiant à la Web@cademie by Epitech, je combine des projets SaaS, Web3 et marketplaces avec une agence IT de 8 collaborateurs. Mon objectif : transformer chaque ligne de code en compétence fullstack solide et livrer des applications utiles, du build à la production.",
     availability: "Recherche une alternance de 14 mois",
     rhythm: "6 semaines entreprise / 2 semaines formation",
     location: "Paris, France",
@@ -74,27 +74,27 @@ export const portfolioContent = {
     phone: "07-69-96-73-30",
     location: "Paris, France",
     title: "Parlons alternance, SaaS ou automatisation.",
-    body: "Disponible pour une alternance fullstack de 14 mois. Interesse par les projets web, IA, marketplaces, Web3 et outils internes.",
+    body: "Disponible pour une alternance fullstack de 14 mois. Intéressé par les projets web, IA, marketplaces, Web3 et outils internes.",
     formspreeId: "",
   },
   stats: [
     { value: "2025 / 2027", label: "Web@cademie by Epitech" },
-    { value: "14 mois", label: "Alternance recherchee" },
+    { value: "14 mois", label: "Alternance recherchée" },
     { value: "6 / 2", label: "Rythme entreprise / formation" },
     { value: "15+", label: "Projets et produits suivis" },
   ],
   proofPoints: [
-    "8 collaborateurs Epitech geres au sein de l'agence IT Teach (missions 500 a 40 000 euros).",
-    "5 produits SaaS/marketplaces construis de zero : CourseCircuit, FrontalierPro, PickUp, Health Mate, Persona.",
+    "8 collaborateurs Epitech gérés au sein de l'agence IT Teach (missions 500 à 40 000 euros).",
+    "5 produits SaaS/marketplaces construits de zéro : CourseCircuit, FrontalierPro, PickUp, Health Mate, Persona.",
     "Infrastructure self-hosted : Homelab 24/7 avec Docker, n8n, Ollama, Qdrant et PostgreSQL.",
   ],
   agency: {
     title: "Agence IT Teach / Octopus",
-    body: "L'agence structure une offre B2B pour PME : creation de sites, refonte, automatisation, integration IA et SaaS sur mesure. Octopus sert de vitrine, portfolio, equipe, contact qualifie et back-office de gestion.",
+    body: "L'agence structure une offre B2B pour PME : création de sites, refonte, automatisation, intégration IA et SaaS sur mesure. Octopus sert de vitrine, portfolio, équipe, contact qualifié et back-office de gestion.",
     details: [
       "Organisation en 3 squads : Front, Back, SEO/Ops.",
       "8 collaborateurs Epitech, prospection terrain et cold calling.",
-      "Offres de 300 a 40k selon la complexite : branding, sites, automatisation, IA, SaaS.",
+      "Offres de 300 à 40k selon la complexité : branding, sites, automatisation, IA, SaaS.",
       "Scraping prospects avec Playwright, PagesJaunes, Google Maps, detection CMS et export CSV/Excel.",
     ],
   },
@@ -109,8 +109,8 @@ export const portfolioContent = {
       impact:
         "Agence IT de 8 collaborateurs Epitech offrant sites, automatisation et IA aux PME, cabinets et restaurants.",
       highlights: [
-        "3 squads operationnelles : Front, Back, SEO/Ops.",
-        "Prospection automatisee : PagesJaunes, Google Maps, cold calling.",
+        "3 squads opérationnelles : Front, Back, SEO/Ops.",
+        "Prospection automatisée : PagesJaunes, Google Maps, cold calling.",
         "Workflow commercial avec qualification CRM, appels et suivi prospects.",
       ],
     },
@@ -131,9 +131,9 @@ export const portfolioContent = {
       impact:
         "Marketplace producteurs, restaurants, relais et consommateurs pour structurer des circuits alimentaires locaux.",
       highlights: [
-        "34 tests passes, RLS Securite Row-Level, Stripe E2E valide.",
-        "Carte interactive MapLibreGL avec geolocalisation producteurs et relais.",
-        "6 phases de build, architecture modulaire avec paiement integre.",
+        "34 tests passés, RLS Securite Row-Level, Stripe E2E valide.",
+        "Carte interactive MapLibreGL avec géolocalisation producteurs et relais.",
+        "6 phases de build, architecture modulaire avec paiement intégré.",
       ],
     },
     {
@@ -144,11 +144,11 @@ export const portfolioContent = {
       stack: ["NestJS", "Vue 3", "Supabase", "PostgreSQL", "Docker", "Stripe"],
       categories: ["SaaS", "B2C", "Data"],
       impact:
-        "Plateforme dediee aux travailleurs frontaliers : informations, demarches et services centralises entre France et Suisse.",
+        "Plateforme dédiée aux travailleurs frontaliers : informations, démarches et services centralisés entre France et Suisse.",
       highlights: [
-        "Modele SaaS avec abonnements actifs et utilisateurs reels.",
-        "Migration ciblee vers NestJS + Supabase + Docker.",
-        "Iterations produit basees sur les retours terrain.",
+        "Modèle SaaS avec abonnements actifs et utilisateurs réels.",
+        "Migration ciblée vers NestJS + Supabase + Docker.",
+        "Itérations produit basées sur les retours terrain.",
       ],
     },
     {
@@ -165,11 +165,11 @@ export const portfolioContent = {
       ],
       categories: ["Marketplace", "Mobile-first", "Operations"],
       impact:
-        "Plateforme de services urbains a la demande : livraison, conciergerie et missions terrain.",
+        "Plateforme de services urbains à la demande : livraison, conciergerie et missions terrain.",
       highlights: [
-        "19 pages React codees avec Supabase et Stripe Connect.",
+        "19 pages React codées avec Supabase et Stripe Connect.",
         "Parcours marketplace multi-pages et logique de mise en relation.",
-        "Notifications, paiement, suivi et execution operationnelle.",
+        "Notifications, paiement, suivi et exécution opérationnelle.",
       ],
     },
     {
@@ -190,7 +190,7 @@ export const portfolioContent = {
         "Serveur personnel 24/7 pour automatisations, IA locale, RAG vault Obsidian et prospection.",
       highlights: [
         "Stack : n8n (workflows), Ollama (LLM local), Qdrant (vector DB), PostgreSQL.",
-        "RAG sur le vault Obsidian pour reponses contextuelles.",
+        "RAG sur le vault Obsidian pour réponses contextuelles.",
         "Automatisation Jarvis : pipeline alternance, scraping prospects, scoring IA.",
       ],
     },
@@ -204,7 +204,7 @@ export const portfolioContent = {
     },
     {
       company: "Au Bureau",
-      role: "Manager — caisse, flux, equipe, pression operationnelle",
+      role: "Manager — caisse, flux, équipe, pression opérationnelle",
       period: "2023 — 2025",
       brand: "#b45309",
     },
@@ -218,19 +218,19 @@ export const portfolioContent = {
     },
     {
       company: "Persona",
-      role: "Newsletter tech personnalisee — n8n + Ollama + PostgreSQL + RGPD",
+      role: "Newsletter tech personnalisée — n8n + Ollama + PostgreSQL + RGPD",
       period: "Juillet 2026",
       brand: "#ea4b71",
     },
     {
       company: "CodeName",
-      role: "W-AIA-200 — Prompt engineering, defense LLM anti-injection, attack strategies",
+      role: "W-AIA-200 — Prompt engineering, défense LLM anti-injection, attack strategies",
       period: "Juin 2026",
       brand: "#7c3aed",
     },
     {
       company: "CoreLab",
-      role: "W-WEB-201 — LMS MERN en equipe (3), React + Express + MongoDB + Docker + CI/CD",
+      role: "W-WEB-201 — LMS MERN en équipe (3), React + Express + MongoDB + Docker + CI/CD",
       period: "Mai — Juin 2026",
       brand: "#0891b2",
     },
@@ -248,19 +248,19 @@ export const portfolioContent = {
     },
     {
       company: "Exam SQL",
-      role: "Requetes complexes PostgreSQL, exercices et revision",
+      role: "Requêtes complexes PostgreSQL, exercices et révision",
       period: "Avril 2026",
       brand: "#336791",
     },
     {
       company: "Seminaire RAN",
-      role: "Remise a niveau — SQL Schema, PHP MVC, Docker (4 jours, equipe)",
+      role: "Remise à niveau — SQL Schema, PHP MVC, Docker (4 jours, équipe)",
       period: "Mars 2026",
       brand: "#dc2626",
     },
     {
       company: "Connect In",
-      role: "W-WEB-103 — Reseau social interne, Laravel + MySQL + JWT + Docker",
+      role: "W-WEB-103 — Réseau social interne, Laravel + MySQL + JWT + Docker",
       period: "Mars 2026",
       brand: "#0f766e",
     },
@@ -296,14 +296,14 @@ export const portfolioContent = {
       name: "Piscine Web (WAC)",
       duration: "15 jours",
       stack: ["Shell", "Git", "HTML/CSS", "JavaScript"],
-      period: "Debut 2026",
+      period: "Début 2026",
       brand: "#41B883",
     },
   ] satisfies BootcampEntry[],
   education: [
     {
       school: "Web@cademie by Epitech",
-      degree: "Developpement web fullstack — WAC Promo 2027",
+      degree: "Développement web fullstack — WAC Promo 2027",
       period: "2025 — 2027",
     },
     {

@@ -42,11 +42,11 @@ export function Projects({
         {withHeadline ? (
           <FadeIn className="flex flex-col items-center gap-5 pt-12 pb-10 text-center sm:pt-20 sm:pb-14">
             <h2 className="text-foreground font-serif text-[2.5rem] leading-[1.05] font-medium tracking-tight md:text-[3rem] lg:text-[3.5rem]">
-              Projets selectionnes
+              Projets sélectionnés
             </h2>
             <p className="text-foreground/65 max-w-[33ch] text-[18px] leading-[1.45] tracking-tight sm:text-[20px]">
-              Des produits construits pour apprendre vite, tester un marche et
-              transformer des problemes reels en interfaces exploitables.
+              Des produits construits pour apprendre vite, tester un marché et
+              transformer des problèmes réels en interfaces exploitables.
             </p>
           </FadeIn>
         ) : null}

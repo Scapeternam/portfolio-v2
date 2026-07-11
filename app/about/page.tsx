@@ -10,9 +10,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
-  title: "A propos",
+  title: "À propos",
   description:
-    "Parcours, formation, projets et contact de Tidjan Tokpa, developpeur web fullstack en alternance.",
+    "Parcours, formation, projets et contact de Tidjan Tokpa, développeur web fullstack en alternance.",
   path: "/about",
 });
 
@@ -34,14 +34,14 @@ export default function AboutPage(): ReactNode {
             <div className="text-foreground/75 mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight sm:text-[18px]">
               <p>{profile.summary}</p>
               <p>
-                Mon parcours part du terrain: management, rythme operationnel,
-                flux de caisse, priorites mouvantes et responsabilite
-                d&apos;equipe. Je m&apos;en sers aujourd&apos;hui pour
+                Mon parcours part du terrain: management, rythme opérationnel,
+                flux de caisse, priorités mouvantes et responsabilité
+                d&apos;équipe. Je m&apos;en sers aujourd&apos;hui pour
                 construire des produits qui restent utiles hors demo.
               </p>
               <p>
                 {agency.body} Cette logique relie mes projets SaaS,
-                marketplaces, IA et operations terrain autour d&apos;un meme
+                marketplaces, IA et opérations terrain autour d&apos;un même
                 objectif: apprendre vite en livrant du concret.
               </p>
             </div>

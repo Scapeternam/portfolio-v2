@@ -30,14 +30,32 @@ export type StackChip = {
   iconUrl?: string;
 };
 
+export type CvConfig = {
+  featured: string[];
+  pillStyle: "mono" | "colored";
+  maxBullets: number;
+  cardDensity: "compact" | "normal" | "spacieux";
+  photoSize: "petite" | "moyenne" | "grande";
+  showEpitechProjects: boolean;
+  epitechMax: number;
+};
+
+export type BootcampEntry = {
+  name: string;
+  duration: string;
+  stack: string[];
+  period: string;
+  brand: string;
+};
+
 export const portfolioContent = {
   profile: {
     name: "Tidjan Tokpa",
-    role: "Developpeur web fullstack en alternance",
+    role: "Developpeur fullstack — Epitech WAC Promo 2027",
     headline:
-      "Je construis des produits web utiles en combinant backend rigoureux, interfaces modernes, automatisation IA et culture produit.",
+      "Je construis des SaaS, marketplaces et outils d'automatisation. Backend rigoureux, interfaces modernes, culture produit et infrastructure.",
     summary:
-      "Developpeur a la Web@cademie by Epitech, avec une experience terrain en management et une culture MVP/no-code devenue culture produit. Je cherche a transformer cette trajectoire en competence fullstack solide: concevoir, livrer, tester et ameliorer des applications utiles.",
+      "Etudiant a la Web@cademie by Epitech, je combine des projets SaaS, Web3 et marketplaces avec une agence IT de 8 collaborateurs. Mon objectif : transformer chaque ligne de code en competence fullstack solide et livrer des applications utiles, du build a la production.",
     availability: "Recherche une alternance de 14 mois",
     rhythm: "6 semaines entreprise / 2 semaines formation",
     location: "Paris, France",
@@ -56,102 +74,44 @@ export const portfolioContent = {
     phone: "07-69-96-73-30",
     location: "Paris, France",
     title: "Parlons alternance, SaaS ou automatisation.",
-    body: "Disponible pour une alternance fullstack de 14 mois et pour echanger sur des projets web, IA, marketplaces ou outils internes.",
+    body: "Disponible pour une alternance fullstack de 14 mois. Interesse par les projets web, IA, marketplaces, Web3 et outils internes.",
+    formspreeId: "",
   },
   stats: [
     { value: "2025 / 2027", label: "Web@cademie by Epitech" },
     { value: "14 mois", label: "Alternance recherchee" },
     { value: "6 / 2", label: "Rythme entreprise / formation" },
-    { value: "6+", label: "Produits et projets suivis" },
+    { value: "15+", label: "Projets et produits suivis" },
   ],
   proofPoints: [
-    "Experience operationnelle en environnement a haute pression chez Au Bureau.",
-    "Projets Epitech livres en cycles courts avec architecture MVC, API REST et travail GitHub.",
-    "Projets personnels orientes SaaS, IA, marketplaces, agence tech et operations terrain.",
+    "8 collaborateurs Epitech geres au sein de l'agence IT Teach (missions 500 a 40 000 euros).",
+    "5 produits SaaS/marketplaces construis de zero : CourseCircuit, FrontalierPro, PickUp, Health Mate, Persona.",
+    "Infrastructure self-hosted : Homelab 24/7 avec Docker, n8n, Ollama, Qdrant et PostgreSQL.",
   ],
   agency: {
-    title: "Teach Agency / Octopus",
-    body: "L'agence structure une offre B2B pour PME: creation de sites, refonte, automatisation, integration IA et SaaS sur mesure. Octopus sert de vitrine, portfolio, equipe, contact qualifie et back-office de gestion.",
+    title: "Agence IT Teach / Octopus",
+    body: "L'agence structure une offre B2B pour PME : creation de sites, refonte, automatisation, integration IA et SaaS sur mesure. Octopus sert de vitrine, portfolio, equipe, contact qualifie et back-office de gestion.",
     details: [
-      "Organisation en 3 squads: Front, Back, SEO/Ops.",
+      "Organisation en 3 squads : Front, Back, SEO/Ops.",
       "8 collaborateurs Epitech, prospection terrain et cold calling.",
-      "Offres de 300 a 40k selon la complexite: branding, sites, automatisation, IA, SaaS.",
+      "Offres de 300 a 40k selon la complexite : branding, sites, automatisation, IA, SaaS.",
       "Scraping prospects avec Playwright, PagesJaunes, Google Maps, detection CMS et export CSV/Excel.",
     ],
   },
   projects: [
     {
-      id: "teach-agency",
+      id: "agence-it-teach",
       name: "Agence IT Teach",
       type: "Agence web, IA et automatisation",
-      status: "Go-to-market en structuration",
-      stack: ["Next.js", "Nuxt/Vue", "n8n", "Make", "Claude API", "Playwright"],
-      categories: ["Agency", "AI", "Automation"],
+      status: "En structuration",
+      stack: ["Next.js", "Nuxt", "n8n", "Playwright", "Supabase", "Docker"],
+      categories: ["Agence", "Automatisation", "B2B"],
       impact:
-        "Offre agence pour aider PME, restaurants, cabinets et artisans a moderniser leur presence web et automatiser leurs operations.",
+        "Agence IT de 8 collaborateurs Epitech offrant sites, automatisation et IA aux PME, cabinets et restaurants.",
       highlights: [
-        "Catalogue: sites vitrines, e-commerce, rebranding, chatbots, RAG et SaaS.",
-        "Prospection ciblee: PagesJaunes, Google Maps, GoDaddy/Wix/Squarespace.",
-        "Workflow commercial cadence avec qualification, appels et suivi prospects.",
-      ],
-    },
-    {
-      id: "trash-spotter",
-      name: "Trash Spotter",
-      type: "Marketplace anti-depots sauvages",
-      status: "MVP planifie / en reserve",
-      stack: [
-        "Flutter",
-        "Supabase",
-        "PostGIS",
-        "Fastify",
-        "TypeScript",
-        "Stripe Connect",
-      ],
-      categories: ["Marketplace", "Mobile", "Operations"],
-      impact:
-        "Marketplace P2P/B2G pour signaler un depot sauvage, financer une prime en sequestre et payer un nettoyeur apres validation humaine.",
-      highlights: [
-        "Parcours rapporteur/nettoyeur avec photos, GPS, justificatif decheterie et validation bipartite.",
-        "Architecture Supabase/PostGIS, RLS, state machine PostgreSQL et audit log.",
-        "Paiement en centimes via Stripe Connect: escrow, capture, transfer, refund et webhooks.",
-      ],
-    },
-    {
-      id: "frontalierpro",
-      name: "FrontalierPro",
-      type: "SaaS frontaliers France / Suisse",
-      status: "MVP live et migration cible",
-      stack: ["NestJS", "Vue 3", "PostgreSQL", "Docker", "Railway", "Stripe"],
-      categories: ["SaaS", "Data", "B2C"],
-      impact:
-        "Outil dedie aux travailleurs frontaliers pour centraliser les informations, parcours et services utiles entre France et Suisse.",
-      highlights: [
-        "MVP live utilise comme preuve terrain.",
-        "Migration cible vers une architecture NestJS, Supabase, Docker et Vue.",
-        "Modele SaaS oriente utilisateurs reels et iterations produit.",
-      ],
-    },
-    {
-      id: "health-mate",
-      name: "Health Mate",
-      type: "Produit IA sante & abonnement",
-      status: "Prototype audite",
-      stack: [
-        "Next.js",
-        "Fastify",
-        "Claude API",
-        "Stripe",
-        "Docker",
-        "PostgreSQL",
-      ],
-      categories: ["AI", "SaaS", "Health"],
-      impact:
-        "Prototype fullstack autour de l'accompagnement sante, combinant IA, paiement et architecture API separee.",
-      highlights: [
-        "Separation front Next.js et API Fastify.",
-        "Integration IA et Stripe comme coeur produit.",
-        "Audit technique realise avant toute presentation production.",
+        "3 squads operationnelles : Front, Back, SEO/Ops.",
+        "Prospection automatisee : PagesJaunes, Google Maps, cold calling.",
+        "Workflow commercial avec qualification CRM, appels et suivi prospects.",
       ],
     },
     {
@@ -159,64 +119,192 @@ export const portfolioContent = {
       name: "CourseCircuit",
       type: "Marketplace locale phygitale",
       status: "MVP fonctionnel",
-      stack: ["Nuxt", "Vue 3", "Supabase", "PostgreSQL", "MapLibre", "Stripe"],
-      categories: ["Marketplace", "Data", "Local"],
+      stack: [
+        "Nuxt 4",
+        "Vue 3",
+        "Supabase",
+        "PostgreSQL",
+        "MapLibre GL",
+        "Stripe",
+      ],
+      categories: ["Marketplace", "SaaS", "Local"],
       impact:
-        "Marketplace producteurs, restaurants, relais et consommateurs pour structurer des circuits locaux avec carte, paiement et workflow metier.",
+        "Marketplace producteurs, restaurants, relais et consommateurs pour structurer des circuits alimentaires locaux.",
       highlights: [
-        "MVP boucle en plusieurs phases avec parcours principaux couverts.",
-        "Carte interactive, Supabase/Postgres et tests Stripe en environnement test.",
-        "Approche terrain pour connecter producteurs, relais et clients.",
+        "34 tests passes, RLS Securite Row-Level, Stripe E2E valide.",
+        "Carte interactive MapLibreGL avec geolocalisation producteurs et relais.",
+        "6 phases de build, architecture modulaire avec paiement integre.",
+      ],
+    },
+    {
+      id: "frontalierpro",
+      name: "FrontalierPro",
+      type: "SaaS travailleurs frontaliers France/Suisse",
+      status: "En production",
+      stack: ["NestJS", "Vue 3", "Supabase", "PostgreSQL", "Docker", "Stripe"],
+      categories: ["SaaS", "B2C", "Data"],
+      impact:
+        "Plateforme dediee aux travailleurs frontaliers : informations, demarches et services centralises entre France et Suisse.",
+      highlights: [
+        "Modele SaaS avec abonnements actifs et utilisateurs reels.",
+        "Migration ciblee vers NestJS + Supabase + Docker.",
+        "Iterations produit basees sur les retours terrain.",
       ],
     },
     {
       id: "pickup",
       name: "PickUp",
-      type: "Marketplace services urbains",
-      status: "Produit fonctionnel non lance",
+      type: "Marketplace services urbains on-demand",
+      status: "Fonctionnel non lance",
       stack: [
-        "React",
+        "React 18",
         "Vite",
         "TypeScript",
         "Supabase",
         "Stripe Connect",
-        "Twilio",
       ],
       categories: ["Marketplace", "Mobile-first", "Operations"],
       impact:
-        "Plateforme de services urbains a la demande: livraison, conciergerie, missions terrain et coordination operationnelle.",
+        "Plateforme de services urbains a la demande : livraison, conciergerie et missions terrain.",
       highlights: [
-        "Architecture React/Vite avec Supabase et Stripe Connect.",
+        "19 pages React codees avec Supabase et Stripe Connect.",
         "Parcours marketplace multi-pages et logique de mise en relation.",
-        "Orientation operations: notifications, paiement, suivi et execution terrain.",
+        "Notifications, paiement, suivi et execution operationnelle.",
+      ],
+    },
+    {
+      id: "homelab-teach",
+      name: "Homelab Teach",
+      type: "Infrastructure self-hosted 24/7",
+      status: "En production",
+      stack: [
+        "Docker",
+        "n8n",
+        "Ollama",
+        "Qdrant",
+        "PostgreSQL",
+        "Ubuntu Server",
+      ],
+      categories: ["Infra", "IA", "DevOps"],
+      impact:
+        "Serveur personnel 24/7 pour automatisations, IA locale, RAG vault Obsidian et prospection.",
+      highlights: [
+        "Stack : n8n (workflows), Ollama (LLM local), Qdrant (vector DB), PostgreSQL.",
+        "RAG sur le vault Obsidian pour reponses contextuelles.",
+        "Automatisation Jarvis : pipeline alternance, scraping prospects, scoring IA.",
       ],
     },
   ] satisfies PortfolioProject[],
   experience: [
     {
-      company: "Connect In",
-      role: "Projet Epitech - Laravel, MVC, API et binome GitHub",
-      period: "2026",
+      company: "Agence IT Teach",
+      role: "Fondateur — 8 collaborateurs Epitech, missions 500-40k",
+      period: "2026 — present",
       brand: "#0f766e",
     },
     {
-      company: "My Cinema",
-      role: "Projet Epitech - PHP 8.3 natif, POO, API et back-office",
-      period: "2026",
-      brand: "#7c3aed",
-    },
-    {
       company: "Au Bureau",
-      role: "Manager - caisse, flux, process, equipe et pression operationnelle",
-      period: "2023 - 2025",
+      role: "Manager — caisse, flux, equipe, pression operationnelle",
+      period: "2023 — 2025",
       brand: "#b45309",
     },
   ] satisfies TimelineEntry[],
+  epitechProjects: [
+    {
+      company: "Job Aggregator",
+      role: "W-YEP-200 — Plateforme offres d'emploi, React + PocketBase + n8n + Ollama + Docker",
+      period: "Juillet 2026 — en cours",
+      brand: "#2563eb",
+    },
+    {
+      company: "Persona",
+      role: "Newsletter tech personnalisee — n8n + Ollama + PostgreSQL + RGPD",
+      period: "Juillet 2026",
+      brand: "#ea4b71",
+    },
+    {
+      company: "CodeName",
+      role: "W-AIA-200 — Prompt engineering, defense LLM anti-injection, attack strategies",
+      period: "Juin 2026",
+      brand: "#7c3aed",
+    },
+    {
+      company: "CoreLab",
+      role: "W-WEB-201 — LMS MERN en equipe (3), React + Express + MongoDB + Docker + CI/CD",
+      period: "Mai — Juin 2026",
+      brand: "#0891b2",
+    },
+    {
+      company: "VideOps",
+      role: "Pipeline CI/CD Space Invaders — TypeScript + Vitest + Cypress + GitHub Actions",
+      period: "Avril 2026",
+      brand: "#059669",
+    },
+    {
+      company: "CV Generator",
+      role: "W-WEB-101 — Générateur CV avec export PDF, PHP + Bootstrap + Dompdf",
+      period: "Avril 2026",
+      brand: "#d97706",
+    },
+    {
+      company: "Exam SQL",
+      role: "Requetes complexes PostgreSQL, exercices et revision",
+      period: "Avril 2026",
+      brand: "#336791",
+    },
+    {
+      company: "Seminaire RAN",
+      role: "Remise a niveau — SQL Schema, PHP MVC, Docker (4 jours, equipe)",
+      period: "Mars 2026",
+      brand: "#dc2626",
+    },
+    {
+      company: "Connect In",
+      role: "W-WEB-103 — Reseau social interne, Laravel + MySQL + JWT + Docker",
+      period: "Mars 2026",
+      brand: "#0f766e",
+    },
+    {
+      company: "POPEYE",
+      role: "W-DOP-100 — Microservices Docker, Flask + Redis + PostgreSQL + Node.js worker",
+      period: "Fevrier 2026",
+      brand: "#2496ed",
+    },
+    {
+      company: "Jekyll Portfolio",
+      role: "W-POR-100 — Portfolio dev fullstack, Jekyll + GitHub Pages",
+      period: "Janvier — Avril 2026",
+      brand: "#1f1f1f",
+    },
+  ] satisfies TimelineEntry[],
+  bootcamps: [
+    {
+      name: "Piscine MERN",
+      duration: "5 jours",
+      stack: ["MongoDB", "Express", "React", "Node.js"],
+      period: "Milieu 2026",
+      brand: "#3ECF8E",
+    },
+    {
+      name: "Piscine Java",
+      duration: "8 jours",
+      stack: ["Java SE", "POO", "Algorithmique"],
+      period: "Milieu 2026",
+      brand: "#e76f00",
+    },
+    {
+      name: "Piscine Web (WAC)",
+      duration: "15 jours",
+      stack: ["Shell", "Git", "HTML/CSS", "JavaScript"],
+      period: "Debut 2026",
+      brand: "#41B883",
+    },
+  ] satisfies BootcampEntry[],
   education: [
     {
       school: "Web@cademie by Epitech",
-      degree: "Developpement web fullstack",
-      period: "2025 - 2027",
+      degree: "Developpement web fullstack — WAC Promo 2027",
+      period: "2025 — 2027",
     },
     {
       school: "Certification Claude Code",
@@ -227,26 +315,51 @@ export const portfolioContent = {
   skillGroups: [
     {
       label: "Frontend",
-      skills: ["Vue.js", "Nuxt", "React", "Next.js", "Tailwind", "Vite"],
-    },
-    {
-      label: "Backend",
-      skills: ["PHP", "Laravel", "Node.js", "NestJS", "Fastify", "REST API"],
-    },
-    {
-      label: "Data & Infra",
       skills: [
-        "PostgreSQL",
-        "PostGIS",
-        "MySQL",
-        "Supabase",
-        "Docker",
-        "GitHub CI/CD",
+        "Vue 3",
+        "Nuxt",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
       ],
     },
     {
-      label: "IA & Produit",
-      skills: ["Claude Code", "n8n", "Make", "MVP", "Lean Startup", "Audit"],
+      label: "Backend",
+      skills: [
+        "NestJS",
+        "Node.js",
+        "Fastify",
+        "PostgreSQL",
+        "Supabase",
+        "Redis",
+        "REST API",
+      ],
+    },
+    {
+      label: "DevOps & Infra",
+      skills: [
+        "Docker",
+        "GitHub Actions",
+        "Linux",
+        "n8n",
+        "VPS",
+        "CI/CD",
+        "Ubuntu Server",
+      ],
+    },
+    {
+      label: "Web3 & IA",
+      skills: [
+        "Solana",
+        "Anchor",
+        "Rust",
+        "Ollama",
+        "RAG",
+        "Qdrant",
+        "Playwright",
+      ],
     },
   ],
   stack: [
@@ -256,11 +369,11 @@ export const portfolioContent = {
     { label: "Next.js", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
     { label: "TypeScript", slug: "typescript", bg: "#2F74C0", fg: "#ffffff" },
     { label: "NestJS", slug: "nestjs", bg: "#E0234E", fg: "#ffffff" },
-    { label: "Laravel", slug: "laravel", bg: "#FF2D20", fg: "#ffffff" },
     { label: "Supabase", slug: "supabase", bg: "#3ECF8E", fg: "#0a0a0a" },
     { label: "PostgreSQL", slug: "postgresql", bg: "#336791", fg: "#ffffff" },
-    { label: "PostGIS", slug: "postgresql", bg: "#0f766e", fg: "#ffffff" },
     { label: "Docker", slug: "docker", bg: "#2496ED", fg: "#ffffff" },
+    { label: "n8n", slug: "n8n", bg: "#EA4B71", fg: "#ffffff" },
+    { label: "Solana", slug: "solana", bg: "#9945FF", fg: "#ffffff" },
     {
       label: "GitHub Actions",
       slug: "githubactions",
@@ -268,4 +381,18 @@ export const portfolioContent = {
       fg: "#ffffff",
     },
   ] satisfies StackChip[],
+  cv: {
+    featured: [
+      "agence-it-teach",
+      "coursecircuit",
+      "frontalierpro",
+      "pickup",
+    ],
+    pillStyle: "colored" as const,
+    maxBullets: 2,
+    cardDensity: "compact" as const,
+    photoSize: "moyenne" as const,
+    showEpitechProjects: true,
+    epitechMax: 6,
+  } satisfies CvConfig,
 } as const;

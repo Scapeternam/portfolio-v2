@@ -2,9 +2,7 @@ import {
   ArrowRight,
   Building2,
   Globe2,
-  HeartPulse,
   MapPinned,
-  Recycle,
   Sparkles,
   Truck,
 } from "lucide-react";
@@ -18,12 +16,11 @@ import {
 } from "@/lib/portfolio-content";
 
 const PROJECT_ICONS: Record<string, ComponentType<{ className?: string }>> = {
-  "teach-agency": Building2,
-  "trash-spotter": Recycle,
-  frontalierpro: Globe2,
-  "health-mate": HeartPulse,
+  "agence-it-teach": Building2,
   coursecircuit: MapPinned,
+  frontalierpro: Globe2,
   pickup: Truck,
+  "homelab-teach": Sparkles,
 };
 
 export type ProjectsProps = {
@@ -93,7 +90,8 @@ function ProjectCard({
       delay={Math.min(index * 0.06, 0.3)}
       className="mb-6 break-inside-avoid md:mb-7"
     >
-      <article className="project-card border-foreground/8 bg-background flex min-h-[27rem] flex-col gap-5 rounded-3xl border p-5 sm:p-6">
+      <Link href={`/projects/${project.id}`} className="block focus-ring rounded-3xl">
+        <article className="project-card border-foreground/8 bg-background hover:border-foreground/15 flex min-h-[27rem] flex-col gap-5 rounded-3xl border p-5 transition-colors sm:p-6">
         <header className="flex items-start justify-between gap-3">
           <span className="border-foreground/10 bg-background inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border">
             <Icon className="text-foreground h-3.5 w-3.5" aria-hidden="true" />
@@ -143,7 +141,8 @@ function ProjectCard({
             {project.stack.join(" / ")}
           </p>
         </footer>
-      </article>
+        </article>
+      </Link>
     </FadeIn>
   );
 }

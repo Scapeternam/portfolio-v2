@@ -19,12 +19,11 @@ describe("portfolioContent", () => {
       "/tidjan-portrait-illustration.png"
     );
     expect(portfolioContent.projects.map((project) => project.id)).toEqual([
-      "teach-agency",
-      "trash-spotter",
-      "frontalierpro",
-      "health-mate",
+      "agence-it-teach",
       "coursecircuit",
+      "frontalierpro",
       "pickup",
+      "homelab-teach",
     ]);
   });
 

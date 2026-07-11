@@ -54,9 +54,12 @@ export function ContactCard(): ReactNode {
                   <p className="text-foreground/70 text-[13px] tracking-tight">
                     2026 &copy; {profile.name}
                   </p>
-                  <p className="text-foreground/45 text-[12px] tracking-tight">
-                    Portfolio Next.js personnalise avec React Bits.
-                  </p>
+                  <Link
+                    href="/admin"
+                    className="text-foreground/25 hover:text-foreground/45 w-fit text-[11px] tracking-tight transition-colors"
+                  >
+                    admin
+                  </Link>
                 </div>
               </div>
             </div>

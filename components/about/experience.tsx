@@ -6,19 +6,27 @@ import { useState, type ReactNode } from "react";
 
 import { portfolioContent, type TimelineEntry } from "@/lib/portfolio-content";
 
-const ENTRIES = portfolioContent.experience;
+const PRO_EXP = portfolioContent.experience;
+const EPITECH = portfolioContent.epitechProjects;
+const BOOTCAMPS = portfolioContent.bootcamps;
 
-const COLLAPSED_COUNT = 2.5;
+const COLLAPSED_COUNT = 3;
 const ROW_HEIGHT = 64;
 const ROW_GAP = 8;
 
 export function Experience(): ReactNode {
   const [open, setOpen] = useState(false);
+  const allEntries = [...PRO_EXP, ...EPITECH, ...BOOTCAMPS.map(b => ({
+    company: b.name,
+    role: `Piscine — ${b.stack.join(", ")}`,
+    period: b.period,
+    brand: b.brand,
+  }))];
   const collapsedHeight =
     Math.floor(COLLAPSED_COUNT) * ROW_HEIGHT +
     Math.floor(COLLAPSED_COUNT) * ROW_GAP +
     (COLLAPSED_COUNT % 1) * ROW_HEIGHT;
-  const hiddenCount = ENTRIES.length - Math.floor(COLLAPSED_COUNT);
+  const hiddenCount = allEntries.length - Math.floor(COLLAPSED_COUNT);
 
   return (
     <div className="flex flex-col gap-3">
@@ -40,7 +48,7 @@ export function Experience(): ReactNode {
           style={{ overflow: "hidden" }}
         >
           <ul className="flex flex-col gap-2">
-            {ENTRIES.map((entry) => (
+            {allEntries.map((entry) => (
               <li
                 key={`${entry.company}-${entry.period}`}
                 className="bg-background border-foreground/5 flex items-center gap-4 rounded-3xl border p-2"

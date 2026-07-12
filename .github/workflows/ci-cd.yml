@@ -139,22 +139,16 @@ jobs:
       - name: Audit des dépendances
         id: security-check
         run: |
-          # bun doesn't have an audit command; generate package-lock and run npm audit
           npm install --package-lock-only 2>/dev/null
-          npm audit --audit-level=critical --json > audit-results.json 2>/dev/null || true
-          VULNS=$(cat audit-results.json 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); print(len(d.get('vulnerabilities',{})))" 2>/dev/null || echo 0)
-          if [ "$VULNS" -gt 0 ]; then
-            echo "::warning::$VULNS vulnérabilités détectées"
-          fi
-          echo "status=PASSED" >> $GITHUB_OUTPUT
-          if [ $? -ne 0 ]; then
+          npm audit --audit-level=critical --json > audit-results.json 2>/dev/null
+          AUDIT_EXIT=$?
+          if [ $AUDIT_EXIT -ne 0 ]; then
             echo "::error::Vulnérabilités critiques détectées"
             cat audit-results.json
             echo "status=FAILED" >> $GITHUB_OUTPUT
             exit 1
-          else
-            echo "status=PASSED" >> $GITHUB_OUTPUT
           fi
+          echo "status=PASSED" >> $GITHUB_OUTPUT
 
       - name: Scan des secrets (gitleaks)
         run: |

@@ -76,20 +76,14 @@ jobs:
       - name: Vérifier placeholders légaux
         id: rgpd-check
         run: |
-          PLACEHOLDERS=("{{PRIVACY_POLICY_URL}}" "{{TERMS_URL}}" "{{COMPANY_NAME}}" "{{COMPANY_ADDRESS}}" "{{CONTACT_EMAIL}}")
-          FOUND_PLACEHOLDERS=()
-
-          for placeholder in "${PLACEHOLDERS[@]}"; do
+          for p in PRIVACY_POLICY_URL TERMS_URL COMPANY_NAME COMPANY_ADDRESS CONTACT_EMAIL; do
+            placeholder=$(printf '\x7B\x7B%s\x7D\x7D' "$p")
             if grep -rq "$placeholder" . --include="*.md" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" 2>/dev/null; then
-              FOUND_PLACEHOLDERS+=("$placeholder")
+              echo "::error::Placeholder RGPD non remplacé : $p"
+              echo "status=FAILED" >> $GITHUB_OUTPUT
+              exit 1
             fi
           done
-
-          if [ ${#FOUND_PLACEHOLDERS[@]} -gt 0 ]; then
-            echo "::error::Placeholders RGPD non remplacés : ${FOUND_PLACEHOLDERS[*]}"
-            echo "status=FAILED" >> $GITHUB_OUTPUT
-            exit 1
-          fi
 
           # Vérifier pages légales
           LEGAL_PAGES=("legal/confidentialite.md" "legal/conditions.md" "legal/mentions-legales.md")

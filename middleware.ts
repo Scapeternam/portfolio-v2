@@ -13,7 +13,7 @@ const RULES: Record<string, RateLimitConfig> = {
   "/api": { windowMs: 1 * 60 * 1000, max: 60 },
 };
 
-function getRateLimitInfo(ip: string, path: string): RateLimitConfig | null {
+function getRateLimitInfo(path: string): RateLimitConfig | null {
   for (const [prefix, config] of Object.entries(RULES)) {
     if (path.startsWith(prefix)) return config;
   }
@@ -23,9 +23,9 @@ function getRateLimitInfo(ip: string, path: string): RateLimitConfig | null {
 export function middleware(request: NextRequest): NextResponse {
   const response = NextResponse.next();
 
-  const ip = request.headers.get("x-forwarded-for") ?? request.ip ?? "unknown";
+  const ip = request.headers.get("x-forwarded-for") ?? "unknown";
   const path = request.nextUrl.pathname;
-  const config = getRateLimitInfo(ip, path);
+  const config = getRateLimitInfo(path);
 
   if (!config) return response;
 

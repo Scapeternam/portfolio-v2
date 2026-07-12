@@ -240,18 +240,12 @@ jobs:
     if: success()
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy to Vercel
-        run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
-
       - name: Notification Discord (Succès)
         run: |
           [ -n "$DISCORD_WEBHOOK" ] || exit 0
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
-            -d '{"content": "✅ **portfolio-v2** — Pipeline CI/CD réussi ! Commit : '"${{ github.sha }}"'. Déployé sur Vercel."}'
+            -d '{"content": "✅ **portfolio-v2** — Pipeline CI/CD : 4 gates OK + build OK. Vercel déploie automatiquement. Commit : '"${{ github.sha }}"'"}'
 
   # ============================================================
   # ÉCHEC

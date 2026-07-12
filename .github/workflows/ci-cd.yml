@@ -158,7 +158,7 @@ jobs:
 
       - name: Vérifier middleware CSP
         run: |
-          if grep -rq "Content-Security-Policy" src/ app/ next.config.* 2>/dev/null; then
+          if grep -rq "Content-Security-Policy" src/ app/ next.config.* proxy.ts middleware.ts 2>/dev/null; then
             echo "CSP middleware trouvé"
           else
             echo "::error::Middleware CSP manquant"
@@ -167,7 +167,7 @@ jobs:
 
       - name: Vérifier rate limiting
         run: |
-          if grep -rqi "ratelimit\|rate-limit\|rate_limit" src/ app/ 2>/dev/null; then
+          if grep -rqi "ratelimit\|rate-limit\|rate_limit" src/ app/ proxy.ts middleware.ts 2>/dev/null; then
             echo "Rate limiting trouvé"
           else
             echo "::warning::Middleware de rate limiting non détecté"
@@ -245,4 +245,19 @@ jobs:
           [ -n "$DISCORD_WEBHOOK" ] || exit 0
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
-            -d '{"content": "✅ **portfolio-v2** — Pipeline CI/CD réussi ! Commit : '"${{ github.sha }}"'. Déployé sur Vercel."}'
+            -d '{"content": "✅ **portfolio-v2** — Pipeline CI/CD : 4 gates OK + build OK. Vercel déploie automatiquement. Commit : '"${{ github.sha }}"'"}'
+
+  # ============================================================
+  # ÉCHEC
+  # ============================================================
+  notify-failure:
+    needs: [bmad-validation, rgpd-validation, security-validation, quality-validation]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notification Discord (Échec)
+        run: |
+          [ -n "$DISCORD_WEBHOOK" ] || exit 0
+          curl -s -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{"content": "❌ **portfolio-v2** — Pipeline échoué. Commit : '"${{ github.sha }}"'"}'

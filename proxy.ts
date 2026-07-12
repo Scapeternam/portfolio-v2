@@ -20,7 +20,7 @@ function getRateLimitInfo(path: string): RateLimitConfig | null {
   return null;
 }
 
-export function middleware(request: NextRequest): NextResponse {
+export function proxy(request: NextRequest): NextResponse {
   const response = NextResponse.next();
 
   const ip = request.headers.get("x-forwarded-for") ?? "unknown";

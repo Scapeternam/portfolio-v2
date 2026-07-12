@@ -208,8 +208,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Tests
-        run: bun x vitest run 2>&1 | tee test-output.log; TESTS_EXIT=$?; if [ $TESTS_EXIT -ne 0 ]; then echo "::warning::Certains tests échouent (problèmes préexistants de mock canvas/jsdom)"; fi
-        continue-on-error: true
+        run: bun x vitest run
 
       - name: Build
         run: bun run build

@@ -63,6 +63,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.line-waves-container {
+  width: 100%;
+  height: 100%;
+}
+
 .skip-to-content {
   position: absolute;
   left: -9999px;
@@ -216,4 +221,36 @@ html[data-theme-anim="1"]::view-transition-new(root) {
 
 .project-card:hover .project-card__image-inner {
   transform: scale(1.06);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .site-frame,
+  .site-corner,
+  nav,
+  .line-waves-container,
+  .skip-to-content,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  :root {
+    --background: #ffffff !important;
+    --foreground: #0a0a0a !important;
+    --muted: #f5f5f5 !important;
+    --muted-foreground: #525252 !important;
+    --border: #d4d4d4 !important;
+    --frame: #ffffff !important;
+  }
+
+  html, body {
+    background: white !important;
+    color: #0a0a0a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }

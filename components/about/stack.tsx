@@ -3,39 +3,16 @@
 import { RotateCcw } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-type Chip = {
-  label: string;
-  slug: string;
-  bg: string;
-  fg: string;
-  iconUrl?: string;
-};
+import { portfolioContent, type StackChip } from "@/lib/portfolio-content";
 
-const CHIPS: Chip[] = [
-  {
-    label: "Figma",
-    slug: "figma",
-    bg: "#1f1f1f",
-    fg: "#ffffff",
-    iconUrl: "https://svgl.app/library/figma.svg",
-  },
-  { label: "React", slug: "react", bg: "#1FB6CB", fg: "#ffffff" },
-  { label: "Next.js", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
-  { label: "TypeScript", slug: "typescript", bg: "#2F74C0", fg: "#ffffff" },
-  { label: "shadcn/ui", slug: "shadcnui", bg: "#5b54ff", fg: "#ffffff" },
-  { label: "Cursor", slug: "cursor", bg: "#111111", fg: "#ffffff" },
-  { label: "GSAP", slug: "gsap", bg: "#0AE448", fg: "#0a0a0a" },
-  { label: "GitHub", slug: "github", bg: "#181717", fg: "#ffffff" },
-  { label: "Vercel", slug: "vercel", bg: "#0a0a0a", fg: "#ffffff" },
-  { label: "Tailwind CSS", slug: "tailwindcss", bg: "#2BBCF5", fg: "#ffffff" },
-];
+const CHIPS = portfolioContent.stack;
 
 const CHIP_RADIUS = 14;
 const ICON_RADIUS = 10;
 const WALL_PAD = 16;
 
 type ChipState = {
-  chip: Chip;
+  chip: StackChip;
   body: Matter.Body;
   width: number;
   height: number;
@@ -266,10 +243,12 @@ export function Stack(): ReactNode {
   );
 }
 
-function ChipPill({ chip }: { chip: Chip }): ReactNode {
+function ChipPill({ chip }: { chip: StackChip }): ReactNode {
+  const initials = getChipInitials(chip.label);
+
   return (
     <div
-      className="dark:ring-1 dark:ring-white/15 inline-flex items-center gap-2 p-1 pr-2 text-[15px] font-medium tracking-tight sm:text-[16px]"
+      className="inline-flex items-center gap-2 p-1 pr-2 text-[15px] font-medium tracking-tight sm:text-[16px] dark:ring-1 dark:ring-white/15"
       style={{
         backgroundColor: chip.bg,
         color: chip.fg,
@@ -281,16 +260,27 @@ function ChipPill({ chip }: { chip: Chip }): ReactNode {
         style={{ borderRadius: `${ICON_RADIUS}px` }}
         aria-hidden="true"
       >
-        <img
-          src={chip.iconUrl ?? `https://cdn.simpleicons.org/${chip.slug}`}
-          alt=""
-          width={18}
-          height={18}
-          className="h-5 w-5"
-          draggable={false}
-        />
+        <span className="text-[11px] font-bold tracking-tight text-neutral-950">
+          {initials}
+        </span>
       </span>
       <span>{chip.label}</span>
     </div>
   );
+}
+
+function getChipInitials(label: string): string {
+  const words = label.split(/\s+/).filter(Boolean);
+  if (words.length > 1) {
+    return words
+      .map((word) => word.charAt(0))
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+  }
+
+  return label
+    .replace(/[^a-z0-9]/gi, "")
+    .slice(0, 2)
+    .toUpperCase();
 }

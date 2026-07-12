@@ -1,7 +1,7 @@
 {
-  "name": "Your Site Name",
-  "short_name": "Site",
-  "description": "A modern, accessible landing page template built with Next.js, Tailwind CSS, and TypeScript.",
+  "name": "Tidjan Tokpa — Portfolio",
+  "short_name": "Tidjan Tokpa",
+  "description": "Portfolio de Tidjan Tokpa, developpeur fullstack en alternance, oriente SaaS, IA, marketplaces et automatisation.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

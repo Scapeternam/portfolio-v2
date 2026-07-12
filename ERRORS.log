@@ -1,0 +1,59 @@
+[2026-07-05] [baseline-lint] [pre-existing]
+Description: `bun run lint` failed before the LineWaves implementation.
+Cause: `components/layout/nav.tsx` called `setPillRect` synchronously inside a layout effect, triggering `react-hooks/set-state-in-effect`.
+Fix: Deferred the nav measurement state update through `requestAnimationFrame` and cleaned it up on effect teardown.
+Lesson: Run baseline checks before feature work so pre-existing failures are separated from new regressions.
+
+[2026-07-05] [line-waves-test] [config]
+Description: The new LineWaves test stayed red after the component was created.
+Cause: Vitest did not know the repo's `@/` path alias.
+Fix: Added `vitest.config.ts` with the root alias.
+Lesson: Test runners need their own resolver config when they do not inherit the app bundler config.
+
+[2026-07-05] [line-waves] [typecheck]
+Description: `bun run typecheck` failed on mouse coordinate array indexing.
+Cause: TypeScript inferred mutable `number[]` arrays, and `noUncheckedIndexedAccess` treated indexed values as possibly undefined.
+Fix: Typed `currentMouse` and `targetMouse` as fixed `[number, number]` tuples.
+Lesson: Use tuple types for fixed coordinate pairs under strict indexed access.
+
+[2026-07-05] [portfolio-about] [lint]
+Description: `bun run lint` failed after the about page personalization.
+Cause: JSX text contained raw apostrophes, triggering `react/no-unescaped-entities`.
+Fix: Escaped the affected apostrophes with `&apos;`.
+Lesson: In JSX prose, escape apostrophes or move prose into typed content strings.
+
+[2026-07-05] [dependencies] [security-audit]
+Description: `bun audit --audit-level high` reported high vulnerabilities for `next@16.1.1`.
+Cause: The template dependency version was below the fixed Next.js 16 release line.
+Fix: Updated `next` and `eslint-config-next` to `16.2.10`.
+Lesson: After cloning templates, run dependency audit before considering the baseline production-ready.
+
+[2026-07-05] [portrait-morph] [typecheck]
+Description: `bun run typecheck` failed after replacing a legacy `<img>` with Next Image.
+Cause: Importing `Image` from `next/image` shadowed the global `window.Image` constructor used for WebGL texture loading.
+Fix: Renamed the Next component import to `NextImage`.
+Lesson: Avoid naming imports after browser globals when the same file uses those globals directly.
+
+[2026-07-05] [webgl-fallback] [visual-verification]
+Description: Chrome headless opened the Next dev overlay with `Console Error: unable to create webgl context` during visual verification.
+Cause: `ogl.Renderer` logs a console error before failing when WebGL is unavailable, and `PortraitMorph` did not preflight context support before renderer setup.
+Fix: Added a shared WebGL preflight helper and made `LineWaves`/`PortraitMorph` fail closed to static or background fallback.
+Lesson: Decorative WebGL effects must probe context availability before constructing third-party renderers that log initialization failures.
+
+[2026-07-05] [portrait-morph] [lint]
+Description: `bun run lint` failed on `react-hooks/set-state-in-effect` after adding a fallback reset in `PortraitMorph`.
+Cause: `setReady(false)` was called synchronously inside `useEffect`.
+Fix: Replaced boolean readiness with a derived `readyKey` tied to the current image pair, so image changes reset readiness without a synchronous effect state update.
+Lesson: For effect-driven resource loading, derive readiness from the resource key instead of resetting state synchronously inside the effect body.
+
+[2026-07-05] [hero-mobile] [visual-verification]
+Description: Mobile headless screenshots showed a mostly empty first viewport while the hero content existed in the DOM.
+Cause: The hero text and portrait card were wrapped in Motion components that SSR-rendered with `opacity: 0`; hydration timing in headless mobile left the first viewport visually blank.
+Fix: Removed entrance Motion wrappers from the hero and tightened mobile spacing while keeping the `PortraitMorph` image transition.
+Lesson: Above-the-fold identity content should be visible on first paint; reserve initial-hidden motion wrappers for non-critical content.
+
+[2026-07-05] [hero-mobile] [responsive-overflow]
+Description: The corrected mobile hero still clipped headline, summary text, pills, and CTA controls on the right edge.
+Cause: The hero column and CTA row could keep a wider min-content/layout-animation width than the usable mobile viewport.
+Fix: Bounded hero text, pills, and CTA rows to `calc(100vw - 3rem)` on mobile and removed layout-motion wrappers around the CTA row.
+Lesson: Mobile hero controls need explicit viewport-relative max widths when animated layout wrappers and long French labels are present.

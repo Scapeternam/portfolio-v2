@@ -1,29 +1,8 @@
 import type { ReactNode } from "react";
 
-type Entry = {
-  school: string;
-  degree: string;
-  period: string;
-  slug?: string;
-};
+import { portfolioContent, type EducationEntry } from "@/lib/portfolio-content";
 
-const ENTRIES: Entry[] = [
-  {
-    school: "Rhode Island School of Design",
-    degree: "BFA, Graphic Design",
-    period: "2013 – 2017",
-  },
-  {
-    school: "Stanford University",
-    degree: "HCI Certificate, d.school",
-    period: "2018",
-  },
-  {
-    school: "Bruno Simon's Three.js Journey",
-    degree: "WebGL & Shaders",
-    period: "2022",
-  },
-];
+const ENTRIES = portfolioContent.education;
 
 const ROW_HEIGHT = 64;
 
@@ -31,7 +10,7 @@ export function Education(): ReactNode {
   return (
     <div className="flex flex-col gap-3">
       <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-        Education
+        Formation
       </h3>
       <div className="border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative rounded-4xl border p-2 sm:p-4">
         <ul className="flex flex-col gap-2">
@@ -60,7 +39,7 @@ export function Education(): ReactNode {
   );
 }
 
-function SchoolLogo({ entry }: { entry: Entry }): ReactNode {
+function SchoolLogo({ entry }: { entry: EducationEntry }): ReactNode {
   const initials = entry.school.charAt(0);
   return (
     <span
@@ -68,20 +47,9 @@ function SchoolLogo({ entry }: { entry: Entry }): ReactNode {
       aria-hidden="true"
       style={{ borderRadius: 14 }}
     >
-      {entry.slug ? (
-        <img
-          src={`https://cdn.simpleicons.org/${entry.slug}`}
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-          draggable={false}
-        />
-      ) : (
-        <span className="text-foreground/60 text-[18px] font-semibold tracking-tight">
-          {initials}
-        </span>
-      )}
+      <span className="text-foreground/60 text-[18px] font-semibold tracking-tight">
+        {initials}
+      </span>
     </span>
   );
 }

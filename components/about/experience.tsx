@@ -4,81 +4,34 @@ import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState, type ReactNode } from "react";
 
-type Entry = {
-  company: string;
-  role: string;
-  period: string;
-  slug?: string;
-  brand?: string;
-};
+import { portfolioContent, type TimelineEntry } from "@/lib/portfolio-content";
 
-const ENTRIES: Entry[] = [
-  {
-    company: "Linear",
-    role: "Senior Design Engineer",
-    period: "Mar 2024 – Present",
-    slug: "linear",
-    brand: "#5E6AD2",
-  },
-  {
-    company: "Vercel",
-    role: "Product Designer",
-    period: "Aug 2022 – Feb 2024",
-    slug: "vercel",
-    brand: "#0a0a0a",
-  },
-  {
-    company: "Stripe",
-    role: "Design Engineer",
-    period: "Jun 2021 – Jul 2022",
-    slug: "stripe",
-    brand: "#635BFF",
-  },
-  {
-    company: "Figma",
-    role: "UI Engineer",
-    period: "Sep 2019 – May 2021",
-    slug: "figma",
-    brand: "#A259FF",
-  },
-  {
-    company: "Notion",
-    role: "Product Designer",
-    period: "Jan 2018 – Aug 2019",
-    slug: "notion",
-    brand: "#111111",
-  },
-  {
-    company: "Airbnb",
-    role: "Design Intern",
-    period: "May 2017 – Dec 2017",
-    slug: "airbnb",
-    brand: "#FF5A5F",
-  },
-  {
-    company: "Freelance",
-    role: "Designer & Developer",
-    period: "2015 – 2017",
-    brand: "#0AE448",
-  },
-];
+const PRO_EXP = portfolioContent.experience;
+const EPITECH = portfolioContent.epitechProjects;
+const BOOTCAMPS = portfolioContent.bootcamps;
 
-const COLLAPSED_COUNT = 2.5;
+const COLLAPSED_COUNT = 3;
 const ROW_HEIGHT = 64;
 const ROW_GAP = 8;
 
 export function Experience(): ReactNode {
   const [open, setOpen] = useState(false);
+  const allEntries = [...PRO_EXP, ...EPITECH, ...BOOTCAMPS.map(b => ({
+    company: b.name,
+    role: `Piscine — ${b.stack.join(", ")}`,
+    period: b.period,
+    brand: b.brand,
+  }))];
   const collapsedHeight =
     Math.floor(COLLAPSED_COUNT) * ROW_HEIGHT +
     Math.floor(COLLAPSED_COUNT) * ROW_GAP +
     (COLLAPSED_COUNT % 1) * ROW_HEIGHT;
-  const hiddenCount = ENTRIES.length - Math.floor(COLLAPSED_COUNT);
+  const hiddenCount = allEntries.length - Math.floor(COLLAPSED_COUNT);
 
   return (
     <div className="flex flex-col gap-3">
       <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-        Experience
+        Expérience
       </h3>
       <div
         className={`border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative overflow-hidden rounded-4xl border px-2 pt-2 sm:px-4 sm:pt-4 ${
@@ -95,7 +48,7 @@ export function Experience(): ReactNode {
           style={{ overflow: "hidden" }}
         >
           <ul className="flex flex-col gap-2">
-            {ENTRIES.map((entry) => (
+            {allEntries.map((entry) => (
               <li
                 key={`${entry.company}-${entry.period}`}
                 className="bg-background border-foreground/5 flex items-center gap-4 rounded-3xl border p-2"
@@ -151,7 +104,7 @@ export function Experience(): ReactNode {
                 : "absolute inset-x-0 bottom-0 z-10 py-3 sm:py-4"
             }`}
           >
-            {open ? "Show less" : `Show ${hiddenCount} more`}
+            {open ? "Afficher moins" : `Afficher ${hiddenCount} de plus`}
             <motion.span
               animate={{ rotate: open ? 180 : 0 }}
               transition={{ duration: 0.25 }}
@@ -166,7 +119,7 @@ export function Experience(): ReactNode {
   );
 }
 
-function CompanyLogo({ entry }: { entry: Entry }): ReactNode {
+function CompanyLogo({ entry }: { entry: TimelineEntry }): ReactNode {
   const initials = entry.company.charAt(0);
   return (
     <span
@@ -174,23 +127,12 @@ function CompanyLogo({ entry }: { entry: Entry }): ReactNode {
       aria-hidden="true"
       style={{
         borderRadius: 14,
-        ...(entry.slug ? {} : { backgroundColor: entry.brand }),
+        backgroundColor: entry.brand,
       }}
     >
-      {entry.slug ? (
-        <img
-          src={`https://cdn.simpleicons.org/${entry.slug}`}
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-          draggable={false}
-        />
-      ) : (
-        <span className="text-[18px] font-semibold tracking-tight text-white">
-          {initials}
-        </span>
-      )}
+      <span className="text-[18px] font-semibold tracking-tight text-white">
+        {initials}
+      </span>
     </span>
   );
 }

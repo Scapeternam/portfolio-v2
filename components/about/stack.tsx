@@ -135,7 +135,6 @@ export function Stack(): ReactNode {
       });
 
       const runner = Runner.create();
-      Runner.run(runner, engine);
 
       let raf = 0;
       const tick = (): void => {
@@ -148,7 +147,17 @@ export function Stack(): ReactNode {
         }
         raf = requestAnimationFrame(tick);
       };
-      raf = requestAnimationFrame(tick);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          Runner.run(runner, engine);
+          raf = requestAnimationFrame(tick);
+          observer.disconnect();
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(container);
 
       const onResize = (): void => {
         const newW = container.clientWidth;
@@ -174,6 +183,7 @@ export function Stack(): ReactNode {
 
       cleanup = () => {
         cancelAnimationFrame(raf);
+        observer.disconnect();
         ro.disconnect();
         Runner.stop(runner);
         World.clear(world, false);

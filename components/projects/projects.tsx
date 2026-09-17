@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Building2,
+  ExternalLink,
   Gamepad2,
   Globe2,
   LayoutTemplate,
@@ -100,9 +101,8 @@ function ProjectCard({
       delay={Math.min(index * 0.06, 0.3)}
       className="mb-6 break-inside-avoid md:mb-7"
     >
-      <Link href={`/projects/${project.id}`} className="block focus-ring rounded-3xl">
-        <article className="project-card border-foreground/8 bg-background hover:border-foreground/15 flex min-h-[27rem] flex-col gap-5 rounded-3xl border p-5 transition-colors sm:p-6">
-        <header className="flex items-start justify-between gap-3">
+      <article className="project-card border-foreground/8 bg-background hover:border-foreground/15 relative flex min-h-[27rem] flex-col gap-5 rounded-3xl border p-5 transition-colors sm:p-6">
+        <header className="relative flex items-start justify-between gap-3">
           <span className="border-foreground/10 bg-background inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border">
             <Icon className="text-foreground h-3.5 w-3.5" aria-hidden="true" />
           </span>
@@ -111,7 +111,7 @@ function ProjectCard({
           </span>
         </header>
 
-        <div className="flex flex-1 flex-col gap-4">
+        <div className="relative flex flex-1 flex-col gap-4">
           <h3 className="text-foreground text-[20px] leading-[1.2] font-medium tracking-tight sm:text-[22px]">
             {project.name}
           </h3>
@@ -135,7 +135,7 @@ function ProjectCard({
           </ul>
         </div>
 
-        <footer className="border-foreground/8 flex flex-col gap-3 border-t pt-4">
+        <footer className="border-foreground/8 relative flex flex-col gap-3 border-t pt-4">
           <div className="flex flex-wrap gap-2">
             {project.categories.map((category) => (
               <span
@@ -150,9 +150,26 @@ function ProjectCard({
           <p className="text-foreground/45 text-[12px] leading-normal tracking-tight">
             {project.stack.join(" / ")}
           </p>
+
+          {project.url ? (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring text-foreground/70 hover:text-foreground relative z-20 inline-flex w-fit items-center gap-1.5 text-[12px] font-medium tracking-tight transition-colors"
+            >
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              {project.url.replace(/^https?:\/\/(www\.)?/, "")}
+            </a>
+          ) : null}
         </footer>
-        </article>
-      </Link>
+
+        <Link
+          href={`/projects/${project.id}`}
+          aria-label={`Voir le détail du projet ${project.name}`}
+          className="focus-ring absolute inset-0 z-10 rounded-3xl"
+        />
+      </article>
     </FadeIn>
   );
 }

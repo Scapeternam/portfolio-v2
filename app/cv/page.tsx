@@ -53,6 +53,8 @@ export default function CvPage(): ReactNode {
               </h1>
               <p className="text-foreground/60 mt-1 text-[15px] leading-normal tracking-tight print:text-[11pt] print:mt-0.5">
                 {profile.role}
+                <br />
+                {profile.roleSecondary}
               </p>
               <p className="text-foreground/75 mt-1.5 max-w-[52ch] text-[13px] leading-[1.45] tracking-tight print:text-[9pt] print:mt-1 print:leading-[1.35]">
                 {profile.headline}

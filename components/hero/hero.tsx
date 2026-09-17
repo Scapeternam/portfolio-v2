@@ -19,6 +19,8 @@ export function Hero(): ReactNode {
 
             <h1 className="text-foreground max-w-[11ch] text-[2.35rem] leading-[1.05] font-medium tracking-tight text-balance sm:max-w-none sm:text-[2.75rem] md:text-[2.5rem] lg:text-[3.65rem]">
               {profile.role}
+              <br />
+              {profile.roleSecondary}
             </h1>
 
             <p className="text-foreground/65 max-w-full text-[18px] leading-[1.4] tracking-tight sm:max-w-[38ch] sm:text-[22px]">

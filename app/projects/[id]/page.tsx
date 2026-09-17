@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 import { ContactCard } from "@/components/contact/contact-card";
@@ -64,6 +64,17 @@ export default async function ProjectDetailPage({ params }: Props): Promise<Reac
               <p className="text-foreground/55 text-[17px] leading-normal font-medium tracking-tight sm:text-[18px]">
                 {project.type}
               </p>
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-foreground/8 bg-background focus-ring text-foreground hover:bg-foreground/4 inline-flex w-fit items-center gap-2 rounded-xl border px-4 py-2 text-[13px] font-medium tracking-tight transition-colors"
+                >
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  {project.url.replace(/^https?:\/\/(www\.)?/, "")}
+                </a>
+              ) : null}
             </header>
 
             <div className="border-foreground/8 flex flex-col gap-8 border-t pt-6 sm:gap-10 sm:pt-8">

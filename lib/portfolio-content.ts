@@ -3,6 +3,7 @@ export type PortfolioProject = {
   name: string;
   type: string;
   status: string;
+  url?: string;
   stack: string[];
   categories: string[];
   impact: string;
@@ -57,7 +58,8 @@ export type BootcampEntry = {
 export const portfolioContent = {
   profile: {
     name: "Tidjan Tokpa",
-    role: "Développeur fullstack — Epitech WAC Promo 2027",
+    role: "Développeur fullstack",
+    roleSecondary: "Epitech WAC Promo 2027",
     headline:
       "Je construis des SaaS, marketplaces et outils d'automatisation. Backend rigoureux, interfaces modernes, culture produit et infrastructure.",
     summary:
@@ -147,6 +149,7 @@ export const portfolioContent = {
       name: "FrontalierPro",
       type: "SaaS travailleurs frontaliers France/Suisse",
       status: "En production",
+      url: "https://frontalierpro.com",
       stack: ["NestJS", "Vue 3", "Supabase", "PostgreSQL", "Docker", "Stripe"],
       categories: ["SaaS", "B2C", "Data"],
       impact:

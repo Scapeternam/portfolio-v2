@@ -22,6 +22,12 @@ export type EducationEntry = {
   period: string;
 };
 
+export type CertificationEntry = {
+  issuer: string;
+  name: string;
+  period: string;
+};
+
 export type StackChip = {
   label: string;
   slug: string;
@@ -55,7 +61,7 @@ export const portfolioContent = {
     headline:
       "Je construis des SaaS, marketplaces et outils d'automatisation. Backend rigoureux, interfaces modernes, culture produit et infrastructure.",
     summary:
-      "Étudiant à la Web@cademie by Epitech, je combine des projets SaaS, Web3 et marketplaces avec une agence IT de 8 collaborateurs. Mon objectif : transformer chaque ligne de code en compétence fullstack solide et livrer des applications utiles, du build à la production.",
+      "Étudiant à la Web@cademie by Epitech, je combine des projets SaaS, Web3 et marketplaces avec Poulpi, mon agence IT de 8 collaborateurs. Mon objectif : transformer chaque ligne de code en compétence fullstack solide et livrer des applications utiles, du build à la production.",
     availability: "Recherche une alternance de 14 mois",
     rhythm: "6 semaines entreprise / 2 semaines formation",
     location: "Paris, France",
@@ -84,24 +90,24 @@ export const portfolioContent = {
     { value: "15+", label: "Projets et produits suivis" },
   ],
   proofPoints: [
-    "8 collaborateurs Epitech gérés au sein de l'agence IT Teach (missions 500 à 40 000 euros).",
+    "8 collaborateurs Epitech gérés au sein de Poulpi (missions 500 à 40 000 euros).",
     "5 produits SaaS/marketplaces construits de zéro : CourseCircuit, FrontalierPro, PickUp, Health Mate, Persona.",
     "Infrastructure self-hosted : Homelab 24/7 avec Docker, n8n, Ollama, Qdrant et PostgreSQL.",
   ],
   agency: {
-    title: "Agence IT Teach / Octopus",
-    body: "L'agence structure une offre B2B pour PME : création de sites, refonte, automatisation, intégration IA et SaaS sur mesure. Octopus sert de vitrine, portfolio, équipe, contact qualifié et back-office de gestion.",
+    title: "Poulpi",
+    body: "Poulpi structure une offre B2B pour PME : création de sites, refonte, automatisation, intégration IA et SaaS sur mesure. La plateforme sert de vitrine, portfolio, équipe, contact qualifié et back-office de gestion.",
     details: [
       "Organisation en 3 squads : Front, Back, SEO/Ops.",
       "8 collaborateurs Epitech, prospection terrain et cold calling.",
       "Offres de 300 à 40k selon la complexité : branding, sites, automatisation, IA, SaaS.",
-      "Scraping prospects avec Playwright, PagesJaunes, Google Maps, detection CMS et export CSV/Excel.",
+      "Scraping prospects avec Playwright, PagesJaunes, Google Maps, détection CMS et export CSV/Excel.",
     ],
   },
   projects: [
     {
-      id: "agence-it-teach",
-      name: "Agence IT Teach",
+      id: "poulpi",
+      name: "Poulpi",
       type: "Agence web, IA et automatisation",
       status: "En structuration",
       stack: ["Next.js", "Nuxt", "n8n", "Playwright", "Supabase", "Docker"],
@@ -131,7 +137,7 @@ export const portfolioContent = {
       impact:
         "Marketplace producteurs, restaurants, relais et consommateurs pour structurer des circuits alimentaires locaux.",
       highlights: [
-        "34 tests passés, RLS Securite Row-Level, Stripe E2E valide.",
+        "34 tests passés, RLS Sécurité Row-Level, Stripe E2E validé.",
         "Carte interactive MapLibreGL avec géolocalisation producteurs et relais.",
         "6 phases de build, architecture modulaire avec paiement intégré.",
       ],
@@ -155,7 +161,7 @@ export const portfolioContent = {
       id: "pickup",
       name: "PickUp",
       type: "Marketplace services urbains on-demand",
-      status: "Fonctionnel non lance",
+      status: "Fonctionnel non lancé",
       stack: [
         "React 18",
         "Vite",
@@ -163,7 +169,7 @@ export const portfolioContent = {
         "Supabase",
         "Stripe Connect",
       ],
-      categories: ["Marketplace", "Mobile-first", "Operations"],
+      categories: ["Marketplace", "Mobile-first", "Opérations"],
       impact:
         "Plateforme de services urbains à la demande : livraison, conciergerie et missions terrain.",
       highlights: [
@@ -194,12 +200,87 @@ export const portfolioContent = {
         "Automatisation Jarvis : pipeline alternance, scraping prospects, scoring IA.",
       ],
     },
+    {
+      id: "terre-0",
+      name: "Terre-0",
+      type: "Marketplace aquaponie domestique",
+      status: "MVP en construction",
+      stack: ["Nuxt", "Vue 3", "TypeScript", "Supabase", "Stripe", "Tailwind CSS"],
+      categories: ["Marketplace", "E-commerce", "Produit"],
+      impact:
+        "Marketplace de kits aquaponiques domestiques : pédagogie ouverte, configurateur guidé et achat sans jargon pour rendre l'aquaponie accessible au grand public.",
+      highlights: [
+        "Configurateur de kits par espace, usage, style et budget.",
+        "Logique open source : apprendre gratuitement ou acheter prêt à monter.",
+        "Parcours d'achat complet avec Stripe et Supabase.",
+      ],
+    },
+    {
+      id: "leonida",
+      name: "LEONIDA",
+      type: "Jeu 3D navigateur — mini-GTA",
+      status: "Prototype jouable",
+      stack: ["TypeScript", "Vite", "three.js", "WebGL"],
+      categories: ["Game", "3D", "WebGL"],
+      impact:
+        "Mini-GTA 3D à la troisième personne dans le navigateur : ville procédurale, conduite arcade, trafic IA, police et missions, zéro asset externe et une seule dépendance.",
+      highlights: [
+        "Ville procédurale instanciée : 7 draw calls pour toute la ville.",
+        "Simulation pure testable dans Node sans GPU (54 tests).",
+        "Conduite arcade, poursuites 5 étoiles, missions et attract mode.",
+      ],
+    },
+    {
+      id: "job-aggregator",
+      name: "Job Aggregator",
+      type: "Plateforme d'offres d'emploi dev",
+      status: "Livré — Epitech 2026",
+      stack: ["React", "PocketBase", "n8n", "Ollama", "Docker"],
+      categories: ["Data", "IA", "Web"],
+      impact:
+        "Plateforme type LinkedIn pour offres dev : collecte multi-sources, normalisation, scoring IA local et recherche géolocalisée.",
+      highlights: [
+        "Collecte France Travail et Adzuna, normalisée et dédupliquée.",
+        "Scoring 0-100 en règles pondérées locales, zéro API externe.",
+        "3 conteneurs Docker, CI/CD et sécurité documentée.",
+      ],
+    },
+    {
+      id: "memecoin-intelligence",
+      name: "Memecoin Intelligence",
+      type: "Console de recherche Solana",
+      status: "MVP local fonctionnel",
+      stack: ["Vue 3", "Vite", "TypeScript", "Node.js", "SQLite"],
+      categories: ["Web3", "Data", "IA"],
+      impact:
+        "Console de recherche locale qui relie coins, wallets publics, développeurs et actualités par preuves datées. Aucun ordre signé ni exécuté : outil d'analyse uniquement.",
+      highlights: [
+        "Collecte réelle DEX Screener, RPC Solana et BBC RSS avec provenance.",
+        "Replay déterministe des signaux, mode démo isolé du live.",
+        "62 tests + 4 E2E, migration vers un moteur Rust planifiée.",
+      ],
+    },
+    {
+      id: "wireframes",
+      name: "WireFrames",
+      type: "Factory d'apps prospects Poulpi",
+      status: "Factory opérationnelle",
+      stack: ["Nuxt", "Vue 3", "TypeScript", "GSAP", "n8n", "Supabase"],
+      categories: ["Agence", "Automatisation", "Factory"],
+      impact:
+        "Chaîne de production d'applications prospects indépendantes : d'un CSV au site livré, avec offres par paliers, moteur commercial local et déploiement par prospect.",
+      highlights: [
+        "3 apps pilotes générées depuis CSV, 323 tests et 54 E2E.",
+        "Apps indépendantes par prospect : template préservé, hashes vérifiés.",
+        "Pipeline n8n vers Supabase self-hosted pour l'ingestion prospects.",
+      ],
+    },
   ] satisfies PortfolioProject[],
   experience: [
     {
-      company: "Agence IT Teach",
+      company: "Poulpi",
       role: "Fondateur — 8 collaborateurs Epitech, missions 500-40k",
-      period: "2026 — present",
+      period: "2026 — présent",
       brand: "#0f766e",
     },
     {
@@ -253,7 +334,7 @@ export const portfolioContent = {
       brand: "#336791",
     },
     {
-      company: "Seminaire RAN",
+      company: "Séminaire RAN",
       role: "Remise à niveau — SQL Schema, PHP MVC, Docker (4 jours, équipe)",
       period: "Mars 2026",
       brand: "#dc2626",
@@ -267,7 +348,7 @@ export const portfolioContent = {
     {
       company: "POPEYE",
       role: "W-DOP-100 — Microservices Docker, Flask + Redis + PostgreSQL + Node.js worker",
-      period: "Fevrier 2026",
+      period: "Février 2026",
       brand: "#2496ed",
     },
     {
@@ -306,12 +387,24 @@ export const portfolioContent = {
       degree: "Développement web fullstack — WAC Promo 2027",
       period: "2025 — 2027",
     },
+  ] satisfies EducationEntry[],
+  certifications: [
     {
-      school: "Certification Claude Code",
-      degree: "Workflow IA, automatisation et product engineering",
+      issuer: "IBM SkillsBuild",
+      name: "IBM Granite Models for Software Development",
       period: "2026",
     },
-  ] satisfies EducationEntry[],
+    {
+      issuer: "IBM SkillsBuild",
+      name: "Lab: Troubleshoot Your Code Using IBM Bob",
+      period: "2026",
+    },
+    {
+      issuer: "Certification Claude Code",
+      name: "Workflow IA, automatisation et product engineering",
+      period: "2026",
+    },
+  ] satisfies CertificationEntry[],
   skillGroups: [
     {
       label: "Frontend",
@@ -321,6 +414,7 @@ export const portfolioContent = {
         "React",
         "Next.js",
         "TypeScript",
+        "JavaScript",
         "Tailwind CSS",
         "Vite",
       ],
@@ -331,9 +425,15 @@ export const portfolioContent = {
         "NestJS",
         "Node.js",
         "Fastify",
+        "Express",
         "PostgreSQL",
+        "MySQL",
+        "MongoDB",
         "Supabase",
         "Redis",
+        "PHP",
+        "Laravel",
+        "Java",
         "REST API",
       ],
     },
@@ -368,9 +468,16 @@ export const portfolioContent = {
     { label: "React", slug: "react", bg: "#1FB6CB", fg: "#ffffff" },
     { label: "Next.js", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
     { label: "TypeScript", slug: "typescript", bg: "#2F74C0", fg: "#ffffff" },
+    { label: "JavaScript", slug: "javascript", bg: "#F7DF1E", fg: "#0a0a0a" },
     { label: "NestJS", slug: "nestjs", bg: "#E0234E", fg: "#ffffff" },
+    { label: "Express", slug: "express", bg: "#1f1f1f", fg: "#ffffff" },
+    { label: "PHP", slug: "php", bg: "#777BB4", fg: "#ffffff" },
+    { label: "Laravel", slug: "laravel", bg: "#FF2D20", fg: "#ffffff" },
+    { label: "Java", slug: "openjdk", bg: "#e76f00", fg: "#ffffff" },
     { label: "Supabase", slug: "supabase", bg: "#3ECF8E", fg: "#0a0a0a" },
     { label: "PostgreSQL", slug: "postgresql", bg: "#336791", fg: "#ffffff" },
+    { label: "MySQL", slug: "mysql", bg: "#4479A1", fg: "#ffffff" },
+    { label: "MongoDB", slug: "mongodb", bg: "#47A248", fg: "#ffffff" },
     { label: "Docker", slug: "docker", bg: "#2496ED", fg: "#ffffff" },
     { label: "n8n", slug: "n8n", bg: "#EA4B71", fg: "#ffffff" },
     { label: "Solana", slug: "solana", bg: "#9945FF", fg: "#ffffff" },
@@ -383,13 +490,15 @@ export const portfolioContent = {
   ] satisfies StackChip[],
   cv: {
     featured: [
-      "agence-it-teach",
+      "poulpi",
       "coursecircuit",
       "frontalierpro",
       "pickup",
+      "homelab-teach",
+      "wireframes",
     ],
     pillStyle: "colored" as const,
-    maxBullets: 2,
+    maxBullets: 1,
     cardDensity: "compact" as const,
     photoSize: "moyenne" as const,
     showEpitechProjects: true,

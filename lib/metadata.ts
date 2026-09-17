@@ -20,9 +20,9 @@ export const siteConfig = {
   ],
   keywords: [
     "Tidjan Tokpa",
-    "developpeur fullstack",
+    "développeur fullstack",
     "alternance développeur web",
-    "portfolio developpeur",
+    "portfolio développeur",
     "SaaS",
     "IA",
     "marketplace",

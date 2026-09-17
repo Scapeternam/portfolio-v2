@@ -27,7 +27,7 @@ function Pill({ label, chips }: { label: string; chips: readonly StackChip[] }):
 }
 
 export default function CvPage(): ReactNode {
-  const { profile, contact, links, projects, experience, epitechProjects, education, skillGroups, bootcamps, stack, cv } =
+  const { profile, contact, links, projects, experience, epitechProjects, education, certifications, skillGroups, bootcamps, stack, cv } =
     portfolioContent;
 
   const featuredProjects = projects.filter((p) => cv.featured.includes(p.id));
@@ -44,7 +44,7 @@ export default function CvPage(): ReactNode {
         </Link>
       </div>
 
-      <article className="cv-a4 mx-auto w-full max-w-[210mm] px-6 py-6 sm:px-10 print:px-[12mm] print:py-[8mm]">
+      <article className="cv-a4 mx-auto w-full max-w-[210mm] px-6 py-6 sm:px-10 print:px-[12mm] print:py-[6mm]">
         <header className="print:pb-2 pb-6">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between print:flex-row print:items-start print:justify-between">
             <div>
@@ -112,6 +112,23 @@ export default function CvPage(): ReactNode {
 
             <div>
               <h2 className="text-foreground/80 text-[12px] font-semibold uppercase tracking-widest print:text-[9pt] print:tracking-[0.15em]">
+                Certifications
+              </h2>
+              <div className="mt-1.5 flex flex-col gap-2 print:gap-1.5 print:mt-1">
+                {certifications.map((cert) => (
+                  <div key={`${cert.issuer}-${cert.name}`} className="flex flex-col">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-foreground text-[12px] font-semibold tracking-tight print:text-[9pt]">{cert.issuer}</p>
+                      <p className="text-foreground/40 shrink-0 text-[10px] tracking-tight print:text-[7.5pt]">{cert.period}</p>
+                    </div>
+                    <p className="text-foreground/55 text-[11px] tracking-tight print:text-[8pt]">{cert.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-foreground/80 text-[12px] font-semibold uppercase tracking-widest print:text-[9pt] print:tracking-[0.15em]">
                 Piscines
               </h2>
               <div className="mt-1.5 flex flex-col gap-1 print:gap-0.5 print:mt-1">
@@ -129,7 +146,7 @@ export default function CvPage(): ReactNode {
                 Langues
               </h2>
               <p className="text-foreground/60 mt-1 text-[11px] tracking-tight print:text-[8pt] print:mt-0.5">
-                Français (natif) · Anglais technique
+                Français (natif) · Anglais B2
               </p>
             </div>
 
@@ -172,13 +189,13 @@ export default function CvPage(): ReactNode {
                       <p className="text-foreground text-[13px] font-semibold tracking-tight print:text-[9.5pt]">{p.name}</p>
                       <p className="text-foreground/45 shrink-0 text-[10px] tracking-tight print:text-[7.5pt]">{p.type}</p>
                     </div>
-                    <p className="text-foreground/55 mt-1 text-[11px] leading-snug tracking-tight print:text-[8pt] print:mt-0.5">
+                    <p className="text-foreground/55 mt-1 text-[11px] leading-snug tracking-tight print:text-[8pt] print:leading-[1.25] print:mt-0.5">
                       {p.impact}
                     </p>
                     {p.highlights.length > 0 ? (
                       <ul className="mt-1 flex flex-col gap-0.5 print:gap-0 print:mt-0.5">
                         {p.highlights.slice(0, cv.maxBullets).map((h) => (
-                          <li key={h} className="text-foreground/50 flex gap-1.5 text-[10px] leading-snug tracking-tight print:text-[8pt] print:gap-1">
+                          <li key={h} className="text-foreground/50 flex gap-1.5 text-[10px] leading-snug tracking-tight print:text-[8pt] print:leading-[1.25] print:gap-1">
                             <span aria-hidden="true" className="bg-foreground/25 mt-1.5 h-1 w-1 shrink-0 rounded-full print:mt-1" />
                             {h}
                           </li>
@@ -210,7 +227,7 @@ export default function CvPage(): ReactNode {
                           <p className="text-foreground/40 shrink-0 text-[9px] tracking-tight print:text-[7pt]">{ep.period}</p>
                         </div>
                         {desc ? (
-                          <p className="text-foreground/45 mt-0.5 text-[10px] leading-snug tracking-tight print:text-[7pt] print:mt-0 print:leading-[1.3]">
+                          <p className="text-foreground/45 mt-0.5 text-[10px] leading-snug tracking-tight print:text-[7pt] print:mt-0 print:leading-[1.15]">
                             {desc}
                           </p>
                         ) : null}

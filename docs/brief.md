@@ -19,7 +19,7 @@ Un site portfolio statique construit avec Next.js 16 et WebGL, déployé sur `sc
 - Vitrine professionnelle pour les recruteurs et clients potentiels
 - Démonstration concrète des compétences Next.js, React, TypeScript, WebGL
 - Support pour la recherche d'alternance 2026-2027
-- Point d'entrée pour l'agence IT Teach (lien vers Octopus)
+- Point d'entrée pour Poulpi (agence web, IA et automatisation)
 
 ## Contexte
 - Étudiant à la Web@cademie by Epitech (Paris)

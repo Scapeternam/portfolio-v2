@@ -194,7 +194,7 @@ Contact:
 
 Projets a afficher:
 
-- Agence IT Teach — Agence / produit commercial — IA, automatisation, Vue/Nuxt, Next.js, Supabase
+- Poulpi — Agence / produit commercial — IA, automatisation, Vue/Nuxt, Next.js, Supabase
 - Trash Spotter — Marketplace anti-depots sauvages — Flutter, Supabase, PostGIS, Fastify, TypeScript, Stripe Connect
 - FrontalierPro — SaaS live — Base44 MVP, cible NestJS, Vue 3, Supabase, PostgreSQL, Docker
 - Health Mate — IA full-stack portfolio — Next.js, Fastify, Claude API, Stripe, Docker

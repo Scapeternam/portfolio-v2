@@ -19,12 +19,27 @@ describe("portfolioContent", () => {
       "/tidjan-portrait-illustration.png"
     );
     expect(portfolioContent.projects.map((project) => project.id)).toEqual([
-      "agence-it-teach",
+      "poulpi",
       "coursecircuit",
       "frontalierpro",
       "pickup",
       "homelab-teach",
+      "terre-0",
+      "leonida",
+      "job-aggregator",
+      "memecoin-intelligence",
+      "wireframes",
     ]);
+  });
+
+  it("keeps every CV featured project resolvable", () => {
+    const projectIds = new Set(
+      portfolioContent.projects.map((project) => project.id)
+    );
+
+    for (const id of portfolioContent.cv.featured) {
+      expect(projectIds.has(id)).toBe(true);
+    }
   });
 
   it("does not expose template placeholders in public content", () => {

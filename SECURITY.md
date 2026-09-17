@@ -1,5 +1,14 @@
 # Security Audit
 
+## 2026-09-02 Addendum - CV PDF asset replacement
+
+Scope: replaced the public CV export at `public/Tidjan-Tokpa-CV.pdf` with the PDF supplied by the user.
+
+- PDF structure: one A4 page, not encrypted, no JavaScript, no form fields.
+- Runtime impact: no application code, API route, authentication flow, persistence, cookie, or user-input handling changed.
+- Sensitive data exposure: unchanged in application code; the CV intentionally contains public contact/profile data.
+- Dependency audit: `bun audit --audit-level high` currently reports 21 high advisories in existing dependencies, including `next`, `postcss`, `browserslist`, `brace-expansion`, `nanoid`, `sharp`, `undici`, and `js-yaml`. This was not introduced by the CV asset replacement and remains to be remediated separately.
+
 Date: 2026-07-05
 Scope: React Bits `LineWaves` WebGL background integration and portfolio content personalization.
 

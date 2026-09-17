@@ -1,5 +1,12 @@
 # Production Checklist
 
+## 2026-09-02 Addendum - CV PDF asset replacement
+
+- Asset update: `public/Tidjan-Tokpa-CV.pdf` was replaced while preserving the existing public URL used by the portfolio CTA.
+- Build: `bun run build` passes when network access is available for `next/font` Google Fonts fetches.
+- Functional checks: `bun run lint`, `bun run typecheck`, and `bun run test` pass.
+- Security: `bun audit --audit-level high` currently fails because of high advisories in existing dependencies. Do not treat this repository as deployment-ready until dependency remediation is done.
+
 Date: 2026-07-05
 Scope: React Bits `LineWaves` background integration and portfolio content personalization.
 

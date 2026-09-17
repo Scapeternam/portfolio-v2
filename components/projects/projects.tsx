@@ -1,9 +1,14 @@
 import {
   ArrowRight,
+  BriefcaseBusiness,
   Building2,
+  Gamepad2,
   Globe2,
+  LayoutTemplate,
   MapPinned,
+  Radar,
   Sparkles,
+  Sprout,
   Truck,
 } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
@@ -16,11 +21,16 @@ import {
 } from "@/lib/portfolio-content";
 
 const PROJECT_ICONS: Record<string, ComponentType<{ className?: string }>> = {
-  "agence-it-teach": Building2,
+  poulpi: Building2,
   coursecircuit: MapPinned,
   frontalierpro: Globe2,
   pickup: Truck,
   "homelab-teach": Sparkles,
+  "terre-0": Sprout,
+  leonida: Gamepad2,
+  "job-aggregator": BriefcaseBusiness,
+  "memecoin-intelligence": Radar,
+  wireframes: LayoutTemplate,
 };
 
 export type ProjectsProps = {

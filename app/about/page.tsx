@@ -1,3 +1,4 @@
+import { Certifications } from "@/components/about/certifications";
 import { Education } from "@/components/about/education";
 import { Experience } from "@/components/about/experience";
 import { Skills } from "@/components/about/skills";
@@ -37,7 +38,7 @@ export default function AboutPage(): ReactNode {
                 Mon parcours part du terrain: management, rythme opérationnel,
                 flux de caisse, priorités mouvantes et responsabilité
                 d&apos;équipe. Je m&apos;en sers aujourd&apos;hui pour
-                construire des produits qui restent utiles hors demo.
+                construire des produits qui restent utiles hors démo.
               </p>
               <p>
                 {agency.body} Cette logique relie mes projets SaaS,
@@ -65,7 +66,7 @@ export default function AboutPage(): ReactNode {
               </div>
               <div>
                 <h2 className="text-foreground text-[15px] font-semibold tracking-tight">
-                  Teach Agency / Octopus
+                  Poulpi
                 </h2>
                 <ul className="text-foreground/65 mt-4 flex flex-col gap-2 text-[14px] leading-normal tracking-tight">
                   {agency.details.map((detail) => (
@@ -89,6 +90,7 @@ export default function AboutPage(): ReactNode {
           <div className="flex flex-col gap-10">
             <Experience />
             <Education />
+            <Certifications />
             <Skills />
             <Stack />
           </div>

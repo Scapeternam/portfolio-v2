@@ -22,6 +22,7 @@ describe("portfolioContent", () => {
       "poulpi",
       "coursecircuit",
       "frontalierpro",
+      "swisstimate",
       "pickup",
       "homelab-teach",
       "terre-0",
@@ -39,6 +40,18 @@ describe("portfolioContent", () => {
 
     for (const id of portfolioContent.cv.featured) {
       expect(projectIds.has(id)).toBe(true);
+    }
+  });
+
+  it("keeps every project card text within the length of its siblings", () => {
+    // Cards grow with their text; past this length one card stands out in the grid.
+    const MAX_CARD_TEXT_LENGTH = 400;
+
+    for (const project of portfolioContent.projects) {
+      const cardText = [project.type, project.impact, ...project.highlights];
+      const length = cardText.reduce((sum, text) => sum + text.length, 0);
+
+      expect(length, project.id).toBeLessThanOrEqual(MAX_CARD_TEXT_LENGTH);
     }
   });
 

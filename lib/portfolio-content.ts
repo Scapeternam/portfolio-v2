@@ -176,11 +176,11 @@ export const portfolioContent = {
       ],
       categories: ["Immobilier", "Plateforme", "Data"],
       impact:
-        "Plateforme qui accompagne les propriétaires genevois et vaudois : chaque propriétaire reçoit d'abord une analyse écrite et gratuite de son bien, puis une mise en relation avec un professionnel, seulement avec son accord écrit.",
+        "Plateforme immobilière Genève et Vaud : analyse écrite et gratuite du bien, puis mise en relation avec l'accord écrit du propriétaire.",
       highlights: [
-        "Responsable technique, toute la technique de bout en bout : site public, cockpit opérateur, base de données, CI et mise en production.",
-        "Cockpit opérateur : demandes du site, dossiers, analyse écrite versionnée et signée.",
-        "Repère de marché calculé depuis les statistiques officielles OCSTAT, montants en centimes exacts.",
+        "Responsable technique : site public, cockpit, base de données, CI et prod.",
+        "Cockpit opérateur : demandes, dossiers, analyse versionnée et signée.",
+        "Repère de marché calculé depuis les statistiques officielles OCSTAT.",
       ],
     },
     {

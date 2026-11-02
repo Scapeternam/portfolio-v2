@@ -22,6 +22,7 @@ describe("portfolioContent", () => {
       "poulpi",
       "coursecircuit",
       "frontalierpro",
+      "swisstimate",
       "pickup",
       "homelab-teach",
       "terre-0",

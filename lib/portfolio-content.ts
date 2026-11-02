@@ -161,6 +161,29 @@ export const portfolioContent = {
       ],
     },
     {
+      id: "swisstimate",
+      name: "SwissTimate",
+      type: "Intermédiaire immobilier Genève et Vaud",
+      status: "En production",
+      url: "https://swisstimate.ch",
+      stack: [
+        "React",
+        "TypeScript",
+        "Cloudflare Workers",
+        "Supabase",
+        "PostgreSQL",
+        "Playwright",
+      ],
+      categories: ["Immobilier", "Plateforme", "Data"],
+      impact:
+        "Plateforme qui accompagne les propriétaires genevois et vaudois : chaque propriétaire reçoit d'abord une analyse écrite et gratuite de son bien, puis une mise en relation avec un professionnel, seulement avec son accord écrit.",
+      highlights: [
+        "Responsable technique, toute la technique de bout en bout : site public, cockpit opérateur, base de données, CI et mise en production.",
+        "Cockpit opérateur : demandes du site, dossiers, analyse écrite versionnée et signée.",
+        "Repère de marché calculé depuis les statistiques officielles OCSTAT, montants en centimes exacts.",
+      ],
+    },
+    {
       id: "pickup",
       name: "PickUp",
       type: "Marketplace services urbains on-demand",

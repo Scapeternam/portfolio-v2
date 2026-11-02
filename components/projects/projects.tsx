@@ -64,7 +64,7 @@ export function Projects({
           </FadeIn>
         ) : null}
 
-        <div className="columns-1 gap-6 md:columns-2 md:gap-7">
+        <div className="grid grid-cols-1 gap-6 md:auto-rows-fr md:grid-cols-2 md:gap-7">
           {items.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -99,11 +99,8 @@ function ProjectCard({
   const Icon = PROJECT_ICONS[project.id] ?? Sparkles;
 
   return (
-    <FadeIn
-      delay={Math.min(index * 0.06, 0.3)}
-      className="mb-6 break-inside-avoid md:mb-7"
-    >
-      <article className="project-card border-foreground/8 bg-background hover:border-foreground/15 relative flex min-h-[27rem] flex-col gap-5 rounded-3xl border p-5 transition-colors sm:p-6">
+    <FadeIn delay={Math.min(index * 0.06, 0.3)} className="h-full">
+      <article className="project-card border-foreground/8 bg-background hover:border-foreground/15 relative flex h-full min-h-[27rem] flex-col gap-5 rounded-3xl border p-5 transition-colors sm:p-6">
         <header className="relative flex items-start justify-between gap-3">
           <span className="border-foreground/10 bg-background inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border">
             <Icon className="text-foreground h-3.5 w-3.5" aria-hidden="true" />

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLink } from "lucide-react";
 
 import { portfolioContent, type CertificationEntry } from "@/lib/portfolio-content";
 
@@ -30,6 +31,17 @@ export function Certifications(): ReactNode {
                   <span className="text-foreground/30 mx-2">•</span>
                   <span className="text-foreground/55">{entry.period}</span>
                 </span>
+                {entry.url ? (
+                  <a
+                    href={entry.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="focus-ring text-foreground/70 hover:text-foreground mt-1 inline-flex w-fit items-center gap-1.5 text-[12px] font-medium tracking-tight transition-colors"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    {new URL(entry.url).hostname}
+                  </a>
+                ) : null}
               </div>
             </li>
           ))}

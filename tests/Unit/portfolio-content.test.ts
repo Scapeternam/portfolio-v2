@@ -25,6 +25,7 @@ describe("portfolioContent", () => {
       "swisstimate",
       "pickup",
       "homelab-teach",
+      "100",
       "terre-0",
       "leonida",
       "job-aggregator",

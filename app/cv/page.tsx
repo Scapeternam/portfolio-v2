@@ -26,6 +26,19 @@ function Pill({ label, chips }: { label: string; chips: readonly StackChip[] }):
   );
 }
 
+function CvLink({ href }: { href: string }): ReactNode {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-foreground/60 hover:text-foreground focus-ring mt-0.5 inline-block w-fit text-[10px] font-medium tracking-tight underline-offset-2 hover:underline print:text-[7.5pt]"
+    >
+      {new URL(href).hostname.replace(/^www\./, "")} ↗
+    </a>
+  );
+}
+
 export default function CvPage(): ReactNode {
   const { profile, contact, links, projects, experience, epitechProjects, education, certifications, skillGroups, bootcamps, stack, cv } =
     portfolioContent;
@@ -124,6 +137,7 @@ export default function CvPage(): ReactNode {
                       <p className="text-foreground/40 shrink-0 text-[10px] tracking-tight print:text-[7.5pt]">{cert.period}</p>
                     </div>
                     <p className="text-foreground/55 text-[11px] tracking-tight print:text-[8pt]">{cert.name}</p>
+                    {cert.url ? <CvLink href={cert.url} /> : null}
                   </div>
                 ))}
               </div>
@@ -148,7 +162,7 @@ export default function CvPage(): ReactNode {
                 Langues
               </h2>
               <p className="text-foreground/60 mt-1 text-[11px] tracking-tight print:text-[8pt] print:mt-0.5">
-                Français (natif) · Anglais B2
+                Français (natif) · Anglais courant
               </p>
             </div>
 
@@ -194,6 +208,7 @@ export default function CvPage(): ReactNode {
                     <p className="text-foreground/55 mt-1 text-[11px] leading-snug tracking-tight print:text-[8pt] print:leading-[1.25] print:mt-0.5">
                       {p.impact}
                     </p>
+                    {p.url ? <CvLink href={p.url} /> : null}
                     {p.highlights.length > 0 ? (
                       <ul className="mt-1 flex flex-col gap-0.5 print:gap-0 print:mt-0.5">
                         {p.highlights.slice(0, cv.maxBullets).map((h) => (

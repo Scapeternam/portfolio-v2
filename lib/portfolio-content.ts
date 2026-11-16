@@ -27,6 +27,7 @@ export type CertificationEntry = {
   issuer: string;
   name: string;
   period: string;
+  url?: string;
 };
 
 export type StackChip = {
@@ -70,7 +71,7 @@ export const portfolioContent = {
   },
   links: {
     github: "https://github.com/Scapeternam",
-    linkedin: "https://www.linkedin.com/in/tidjan-tokpa-59a44b401",
+    linkedin: "https://www.linkedin.com/in/tidjan-tokpa",
     cv: "/Tidjan-Tokpa-CV.pdf",
   },
   media: {
@@ -110,16 +111,17 @@ export const portfolioContent = {
     {
       id: "poulpi",
       name: "Poulpi",
-      type: "Agence web, IA et automatisation",
-      status: "En structuration",
-      stack: ["Next.js", "Nuxt", "n8n", "Playwright", "Supabase", "Docker"],
+      type: "Agence web, CRM et prospection",
+      status: "En cours",
+      url: "https://poulpi.tech",
+      stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "n8n", "Playwright"],
       categories: ["Agence", "Automatisation", "B2B"],
       impact:
         "Agence IT de 8 collaborateurs Epitech offrant sites, automatisation et IA aux PME, cabinets et restaurants.",
       highlights: [
-        "3 squads opérationnelles : Front, Back, SEO/Ops.",
+        "CRM interne : carte et suivi des prospects, gestion des rôles, tests.",
         "Prospection automatisée : PagesJaunes, Google Maps, cold calling.",
-        "Workflow commercial avec qualification CRM, appels et suivi prospects.",
+        "Workflows n8n pour la qualification et le suivi commercial.",
       ],
     },
     {
@@ -224,6 +226,21 @@ export const portfolioContent = {
         "Stack : n8n (workflows), Ollama (LLM local), Qdrant (vector DB), PostgreSQL.",
         "RAG sur le vault Obsidian pour réponses contextuelles.",
         "Automatisation Jarvis : pipeline alternance, scraping prospects, scoring IA.",
+      ],
+    },
+    {
+      id: "100",
+      name: "100",
+      type: "Jeu vidéo — MMORPG en tour verticale",
+      status: "Game design en cours",
+      stack: ["Unreal Engine 5", "C++", "Supabase", "Python"],
+      categories: ["Game", "Game design", "Spec"],
+      impact:
+        "MMORPG d'action dans une tour de 100 étages, chacun un biome avec sa faune et son boss. PvP et PvE sur la même carte, 5 rôles et 13 familles d'armes.",
+      highlights: [
+        "21 décisions de design datées, motif et alternative à chaque fois.",
+        "Spec technique et architecture Unreal Engine 5.",
+        "Validateur Python des données de progression.",
       ],
     },
     {
@@ -430,6 +447,12 @@ export const portfolioContent = {
       name: "Workflow IA, automatisation et product engineering",
       period: "2026",
     },
+    {
+      issuer: "Hack The Box",
+      name: "Cybersécurité en autodidacte",
+      period: "2026 — en cours",
+      url: "https://profile.hackthebox.com/profile/01a0e943-9de2-72d6-9bb7-bc2462387e04",
+    },
   ] satisfies CertificationEntry[],
   skillGroups: [
     {
@@ -441,6 +464,7 @@ export const portfolioContent = {
         "Next.js",
         "TypeScript",
         "JavaScript",
+        "HTML / CSS",
         "Tailwind CSS",
         "Vite",
       ],
@@ -456,6 +480,7 @@ export const portfolioContent = {
         "MySQL",
         "MongoDB",
         "Supabase",
+        "Stripe",
         "Redis",
         "PHP",
         "Laravel",
@@ -466,8 +491,10 @@ export const portfolioContent = {
     {
       label: "DevOps & Infra",
       skills: [
+        "Git",
         "Docker",
         "GitHub Actions",
+        "Vercel",
         "Linux",
         "n8n",
         "VPS",
@@ -519,8 +546,8 @@ export const portfolioContent = {
       "poulpi",
       "coursecircuit",
       "frontalierpro",
-      "pickup",
       "homelab-teach",
+      "100",
       "wireframes",
     ],
     pillStyle: "colored" as const,

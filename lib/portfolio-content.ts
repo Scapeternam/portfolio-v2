@@ -71,7 +71,7 @@ export const portfolioContent = {
   },
   links: {
     github: "https://github.com/Scapeternam",
-    linkedin: "https://www.linkedin.com/in/tidjan-tokpa-59a44b401",
+    linkedin: "https://www.linkedin.com/in/tidjan-tokpa",
     cv: "/Tidjan-Tokpa-CV.pdf",
   },
   media: {

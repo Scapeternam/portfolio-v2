@@ -50,17 +50,9 @@ export function ContactCard(): ReactNode {
                   <ContactLine icon={MapPin} value={contact.location} />
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <p className="text-foreground/70 text-[13px] tracking-tight">
-                    2026 &copy; {profile.name}
-                  </p>
-                  <Link
-                    href="/admin"
-                    className="text-foreground/25 hover:text-foreground/45 w-fit text-[11px] tracking-tight transition-colors"
-                  >
-                    admin
-                  </Link>
-                </div>
+                <p className="text-foreground/70 text-[13px] tracking-tight">
+                  2026 &copy; {profile.name}
+                </p>
               </div>
             </div>
           </div>

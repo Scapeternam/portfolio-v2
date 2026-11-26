@@ -152,19 +152,11 @@ jobs:
 
       - name: Vérifier middleware CSP
         run: |
-          if grep -rq "Content-Security-Policy" src/ app/ next.config.* proxy.ts middleware.ts 2>/dev/null; then
+          if grep -rq "Content-Security-Policy" next.config.* 2>/dev/null; then
             echo "CSP middleware trouvé"
           else
             echo "::error::Middleware CSP manquant"
             exit 1
-          fi
-
-      - name: Vérifier rate limiting
-        run: |
-          if grep -rqi "ratelimit\|rate-limit\|rate_limit" src/ app/ proxy.ts middleware.ts 2>/dev/null; then
-            echo "Rate limiting trouvé"
-          else
-            echo "::warning::Middleware de rate limiting non détecté"
           fi
 
       - name: Notification Discord (Gate 2)

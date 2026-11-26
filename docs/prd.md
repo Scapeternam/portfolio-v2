@@ -39,16 +39,14 @@ Portfolio personnel de Tidjan Tokpa, développeur fullstack Epitech WAC Promo 20
 ### FR-003 : Page CV
 - **Description** : CV interactif avec sélection des projets affichés, style personnalisable.
 - **Critères d'Acceptation** :
-  - [ ] Affiche les projets sélectionnés (configurable via admin)
+  - [ ] Affiche les projets sélectionnés (configurables dans `lib/portfolio-content.ts`)
   - [ ] Affiche l'expérience, la formation, les compétences
   - [ ] Export PDF possible
 
-### FR-004 : Page Admin
-- **Description** : Interface protégée par mot de passe pour configurer l'affichage du CV.
-- **Critères d'Acceptation** :
-  - [ ] Authentification par mot de passe (`bento`)
-  - [ ] Sélection des projets à afficher sur le CV
-  - [ ] Choix du style (monochrome/couleurs), densité, nombre de points clés
+### FR-004 : Page Admin (retirée)
+- **Décision** : retirée. Un mot de passe vérifié dans le navigateur est lisible dans le
+  JS publié, et la sauvegarde n'enregistrait rien. Les réglages du CV restent dans
+  `lib/portfolio-content.ts` (`cv`).
 
 ### FR-005 : Contact
 - **Description** : Section contact avec email, téléphone, localisation, et formulaire (optionnel).
@@ -83,4 +81,4 @@ Portfolio personnel de Tidjan Tokpa, développeur fullstack Epitech WAC Promo 20
 | US-002 | Page détail projet | High | Low |
 | US-003 | Téléchargement CV | High | Low |
 | US-004 | Formulaire contact | Medium | Medium |
-| US-005 | Page admin protégée | Medium | Medium |
+| US-005 | Page admin protégée (retirée, voir FR-004) | Medium | Medium |

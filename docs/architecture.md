@@ -13,7 +13,7 @@ tags: [bmad, architecture, portfolio, nextjs, webgl]
 ```mermaid
 graph TD
     A[Next.js 16 App Router] --> B[Composants React]
-    B --> C[Pages: Accueil, Projets, CV, About, Admin]
+    B --> C[Pages: Accueil, Projets, CV, About]
     C --> D[lib/portfolio-content.ts - Données statiques]
     D --> E[Vercel - Hébergement]
 ```
@@ -27,9 +27,11 @@ graph TD
 - **3D/WebGL** : OGL (OpenGL abstractions légères)
 
 ### Backend
-- **API** : Route `app/api/admin/route.ts` (GET/POST) — admin dashboard
-- **Authentification** : Client-side password check (`bento`)
-- **Middleware** : CSP, rate limiting à ajouter
+- **API** : Aucune. La page `/admin` et la route `/api/admin` ont été retirées : le mot
+  de passe était vérifié dans le navigateur (donc lisible dans le JS publié) et la route
+  ne faisait que renvoyer ce qu'elle recevait. Le CV se configure dans
+  `lib/portfolio-content.ts` (`cv`).
+- **En-têtes de sécurité** : CSP et autres en-têtes dans `next.config.ts` (`headers()`)
 
 ### Base de Données
 - **Type** : Aucune base de données — tout est statique
@@ -71,11 +73,10 @@ flowchart TD
     /projects/[id] --> ProjectDetail["/projects/[id] — Détail projet"]
     /about --> About["/about — À propos"]
     /cv --> CV["/cv — CV interactif"]
-    /admin --> Admin["/admin — Dashboard admin"]
 ```
 
 ## Sécurité
-- **CSP** : À implémenter via middleware Next.js
-- **Rate Limiting** : À implémenter sur `/admin` et formulaire contact
-- **Secrets** : Aucun stocké dans le code (admin password côté client uniquement)
+- **CSP** : en-têtes posés dans `next.config.ts`
+- **Rate Limiting** : à prévoir avec le formulaire de contact (aucun endpoint aujourd'hui)
+- **Secrets** : Aucun stocké dans le code
 - **HTTPS** : Géré par Vercel

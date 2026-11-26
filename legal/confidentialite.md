@@ -7,35 +7,42 @@ created: 2026-07-09
 
 # Politique de Confidentialité
 
-## 1. Collecte des données
-Ce site ne collecte **aucune donnée personnelle** sans votre consentement explicite.
-- Aucun cookie de tracking
-- Aucun service d'analyse tiers (Google Analytics, etc.)
-- Aucune collecte automatique de données
+Version publiée : `app/confidentialite/page.tsx` (route `/confidentialite`). Garder les
+deux textes identiques.
 
-## 2. Formulaire de contact
-Si vous utilisez le formulaire de contact, les données suivantes sont collectées :
-- Nom
-- Email
-- Message
+## 1. Données collectées
 
-Ces données sont utilisées **uniquement** pour répondre à votre demande et ne sont ni stockées durablement ni revendues à des tiers.
+Ce site ne dépose aucun cookie de suivi et n'utilise aucun outil de mesure d'audience.
+Seul le formulaire de contact collecte des données, et uniquement celles que vous
+saisissez :
 
-## 3. Hébergement
-Ce site est hébergé par **Vercel Inc.** (États-Unis). Vercel est conforme au RGPD (Data Processing Agreement disponible). Les serveurs de Vercel sont situés dans l'Union Européenne pour les projets configurés en région UE.
+- l'objet de votre message (alternance, projet, échange…) ;
+- votre nom ;
+- votre adresse email ;
+- votre message.
 
-## 4. Vos droits
-Conformément au RGPD, vous disposez des droits suivants :
-- **Droit d'accès** : consulter les données vous concernant
-- **Droit de rectification** : corriger des données inexactes
-- **Droit à l'effacement** : demander la suppression de vos données
-- **Droit d'opposition** : vous opposer au traitement de vos données
+## 2. Finalité
 
-Pour exercer ces droits, contactez : tidjan.tokpa@epitech.eu
+Ces données servent uniquement à vous répondre. Elles ne sont ni revendues, ni utilisées
+pour de la prospection, ni enregistrées dans une base de données.
 
-## 5. Responsable du traitement
-- **Nom** : Tidjan Tokpa
-- **Email** : tidjan.tokpa@epitech.eu
-- **Localisation** : Paris, France
+## 3. Destinataires et sous-traitants
 
-Dernière mise à jour : 9 juillet 2026
+- **Vercel Inc.** (États-Unis) héberge le site et traite l'envoi du formulaire.
+- **Resend** (États-Unis) transmet le message par email jusqu'à ma boîte de réception.
+
+## 4. Durée de conservation
+
+Le message est conservé dans ma boîte email le temps de notre échange, puis supprimé au
+plus tard 12 mois après le dernier message.
+
+## 5. Vos droits
+
+Conformément au RGPD, vous pouvez demander l'accès, la rectification ou l'effacement de
+vos données, ou vous opposer à leur traitement, en écrivant à tidjan.tokpa@epitech.eu.
+
+## 6. Responsable du traitement
+
+Tidjan Tokpa, Paris, France.
+
+Dernière mise à jour : 26 novembre 2026

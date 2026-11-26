@@ -24,6 +24,18 @@ export function ContactCardCtas(): ReactNode {
           transition={{ layout: { duration: 0.55, ease: EASE } }}
         >
           <Link
+            href="/contact"
+            className="border-foreground/5 focus-ring bg-background text-foreground inline-flex cursor-pointer items-center rounded-xl border px-5 py-2.5 text-sm font-medium shadow-md/2 transition-colors"
+          >
+            Écrire un message
+          </Link>
+        </motion.div>
+
+        <motion.div
+          layout
+          transition={{ layout: { duration: 0.55, ease: EASE } }}
+        >
+          <Link
             href="/projects"
             className="border-foreground/5 focus-ring group bg-background text-foreground inline-flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-medium shadow-md/2 transition-colors"
           >

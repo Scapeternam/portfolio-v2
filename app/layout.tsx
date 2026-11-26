@@ -3,6 +3,7 @@ import { PageBackdrop } from "@/components/layout/page-backdrop";
 import { Providers } from "@/components/layout/providers";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 import { baseMetadata } from "@/lib/metadata";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
@@ -88,6 +89,7 @@ export default function RootLayout({
             {children}
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );

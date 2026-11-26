@@ -24,9 +24,8 @@ export default function PrivacyPage(): ReactNode {
 
         <h2>1. Données collectées</h2>
         <p>
-          Ce site ne dépose aucun cookie de suivi et n&apos;utilise aucun outil
-          de mesure d&apos;audience. Seul le formulaire de contact collecte des
-          données, et uniquement celles que vous saisissez :
+          Ce site ne dépose aucun cookie. Le formulaire de contact collecte
+          uniquement les données que vous saisissez :
         </p>
         <ul>
           <li>
@@ -37,18 +36,30 @@ export default function PrivacyPage(): ReactNode {
           <li>votre message.</li>
         </ul>
 
-        <h2>2. Finalité</h2>
+        <h2>2. Mesure d&apos;audience</h2>
+        <p>
+          Pour savoir si le site est consulté, j&apos;utilise{" "}
+          <strong>Vercel Web Analytics</strong>, sans cookie. Il enregistre de
+          façon anonyme la page vue, le site d&apos;où vous venez, le pays et la
+          ville, le navigateur, le système et le type d&apos;appareil. Votre
+          visite est reconnue par une empreinte calculée à partir de la requête,
+          supprimée après 24 heures : elle ne permet ni de vous identifier ni de
+          vous suivre sur d&apos;autres sites. Je ne consulte que des
+          statistiques globales.
+        </p>
+
+        <h2>3. Finalité du formulaire</h2>
         <p>
           Ces données servent uniquement à vous répondre. Elles ne sont ni
           revendues, ni utilisées pour de la prospection, ni enregistrées dans
           une base de données.
         </p>
 
-        <h2>3. Destinataires et sous-traitants</h2>
+        <h2>4. Destinataires et sous-traitants</h2>
         <ul>
           <li>
-            <strong>Vercel Inc.</strong> (États-Unis) héberge le site et traite
-            l&apos;envoi du formulaire.
+            <strong>Vercel Inc.</strong> (États-Unis) héberge le site, traite
+            l&apos;envoi du formulaire et fournit la mesure d&apos;audience.
           </li>
           <li>
             <strong>Resend</strong> (États-Unis) transmet le message par email
@@ -56,13 +67,13 @@ export default function PrivacyPage(): ReactNode {
           </li>
         </ul>
 
-        <h2>4. Durée de conservation</h2>
+        <h2>5. Durée de conservation</h2>
         <p>
           Le message est conservé dans ma boîte email le temps de notre échange,
           puis supprimé au plus tard 12 mois après le dernier message.
         </p>
 
-        <h2>5. Vos droits</h2>
+        <h2>6. Vos droits</h2>
         <p>
           Conformément au RGPD, vous pouvez demander l&apos;accès, la
           rectification ou l&apos;effacement de vos données, ou vous opposer à
@@ -73,7 +84,7 @@ export default function PrivacyPage(): ReactNode {
           .
         </p>
 
-        <h2>6. Responsable du traitement</h2>
+        <h2>7. Responsable du traitement</h2>
         <p>
           {profile.name}, {contact.location}.
         </p>

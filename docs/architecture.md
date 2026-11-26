@@ -68,7 +68,9 @@ flowchart LR
 | Service | Usage | Lien |
 |---------|-------|------|
 | Vercel | Hébergement | `https://vercel.com` |
-| Name.com | Domaine `scapeternam.dev` | `https://name.com` |
+| Vercel Web Analytics | Mesure d'audience sans cookie (`<Analytics />` dans `app/layout.tsx`, à activer dans l'onglet Analytics du projet) | `https://vercel.com/docs/analytics` |
+| Resend | Envoi des emails du formulaire de contact (domaine `scapeternam.dev` vérifié) | `https://resend.com` |
+| Name.com | Domaine `scapeternam.dev` (DNS, dont les enregistrements Resend) | `https://name.com` |
 
 ## Schéma des Routes
 ```mermaid

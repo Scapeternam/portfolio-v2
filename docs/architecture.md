@@ -27,10 +27,15 @@ graph TD
 - **3D/WebGL** : OGL (OpenGL abstractions légères)
 
 ### Backend
-- **API** : Aucune. La page `/admin` et la route `/api/admin` ont été retirées : le mot
-  de passe était vérifié dans le navigateur (donc lisible dans le JS publié) et la route
-  ne faisait que renvoyer ce qu'elle recevait. Le CV se configure dans
-  `lib/portfolio-content.ts` (`cv`).
+- **API** : `app/api/contact/route.ts` (POST) reçoit le formulaire de `/contact`,
+  vérifie les champs (`lib/contact.ts`), écarte les robots (champ piège `website`),
+  limite à 5 messages par IP et par 10 minutes (`lib/rate-limit.ts`, en mémoire, donc
+  par instance), puis envoie l'email par l'API REST de Resend. La clé `RESEND_API_KEY`
+  et l'adresse `CONTACT_TO_EMAIL` sont des variables d'environnement Vercel, jamais
+  envoyées au navigateur (voir `.env.example`). Rien n'est stocké en base.
+- **Admin retiré** : la page `/admin` et la route `/api/admin` vérifiaient le mot de
+  passe dans le navigateur (donc lisible dans le JS publié) et ne sauvegardaient rien.
+  Le CV se configure dans `lib/portfolio-content.ts` (`cv`).
 - **En-têtes de sécurité** : CSP et autres en-têtes dans `next.config.ts` (`headers()`)
 
 ### Base de Données
@@ -73,10 +78,12 @@ flowchart TD
     /projects/[id] --> ProjectDetail["/projects/[id] — Détail projet"]
     /about --> About["/about — À propos"]
     /cv --> CV["/cv — CV interactif"]
+    /contact --> Contact["/contact — Formulaire, POST /api/contact"]
+    /confidentialite --> Privacy["/confidentialite — Politique de confidentialité"]
 ```
 
 ## Sécurité
 - **CSP** : en-têtes posés dans `next.config.ts`
-- **Rate Limiting** : à prévoir avec le formulaire de contact (aucun endpoint aujourd'hui)
+- **Rate Limiting** : sur `/api/contact`, en mémoire par instance (frein, pas garantie)
 - **Secrets** : Aucun stocké dans le code
 - **HTTPS** : Géré par Vercel

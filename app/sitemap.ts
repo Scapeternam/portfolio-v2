@@ -5,7 +5,7 @@ import { portfolioContent } from "@/lib/portfolio-content";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const routes = [
-    ...["", "/projects", "/about", "/cv"],
+    ...["", "/projects", "/about", "/cv", "/contact", "/confidentialite"],
     ...portfolioContent.projects.map((project) => `/projects/${project.id}`),
   ];
 

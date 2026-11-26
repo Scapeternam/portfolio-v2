@@ -84,7 +84,6 @@ export const portfolioContent = {
     location: "Paris, France",
     title: "Parlons alternance, SaaS ou automatisation.",
     body: "Disponible pour une alternance fullstack de 14 mois. Intéressé par les projets web, IA, marketplaces, Web3 et outils internes.",
-    formspreeId: "",
   },
   stats: [
     { value: "2025 / 2027", label: "Web@cademie by Epitech" },
